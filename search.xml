@@ -4,41 +4,14 @@
   
     
     <entry>
-      <title><![CDATA[开始使用GitHub Pages]]></title>
-      <url>http://maxuewei2.git.io/2016/10/28/first/</url>
-      <content type="html"><![CDATA[<p>开始使用GitHub Pages，并使用Hexo。</p>
+      <title><![CDATA[聊天室（Java实现）]]></title>
+      <url>http://maxuewei2.git.io/2016/10/28/ChatRoom/</url>
+      <content type="html"><![CDATA[<p>&ensp;<br>&ensp;<br>&ensp;</p>
+<h2 id="功能："><a href="#功能：" class="headerlink" title="功能："></a>功能：</h2><h3 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h3><p>　　　　若用户账号不存在，弹出错误</p>
+<p>　　　　若用户密码错误，弹出错误</p>
+<p>　　　　若用户账号已在线，弹出错误<br><img src="/imgs/chatroom1.png" alt="denglu1"><br><img src="/imgs/chatroom2.png" alt="denglu1"><br><img src="/imgs/chatroom3.png" alt="denglu1"></p>
 <ul>
-<li>2016.10.28 22:17</li>
-</ul>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Java cmd（即Java的JDK配置及相关常用命令）]]></title>
-      <url>http://maxuewei2.git.io/2016/10/28/java%E7%9A%84cmd%E9%85%8D%E7%BD%AE/</url>
-      <content type="html"><![CDATA[<h3 id="找不到或无法加载主类"><a href="#找不到或无法加载主类" class="headerlink" title="找不到或无法加载主类"></a>找不到或无法加载主类</h3><p>这段时间一直纠结于cmd下Java无法编译运行的问题。主要问题描述如下：</p>
-<p><code>javac</code> 命令可以正常运行，而<code>java</code>命令有时可以正常运行，有时却不可以，不可以的症状就是显示<code>找不到或无法加载主类</code>。</p>
-<p>在网上找了各种资料，最终发现是因为代码里含有<code>package</code>语句，所以无法在cmd下运行java命令解释.class文件。而那些可以运行的文件就是因为没有使用<code>package</code>语句。</p>
-<p>这种问题的解决方法就是使用几个特殊的命令。</p>
-<p>常用的命令是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 此处注释采用“#”，若要复制代码到cmd，请勿复制注释部分</span></div><div class="line"><span class="comment"># 设.java文件名为 filename</span></div><div class="line"><span class="comment"># 注意主类的名字和文件名完全相同，包括大小写。</span></div><div class="line"></div><div class="line">javac filename.java</div><div class="line"></div><div class="line">java filename</div></pre></td></tr></table></figure></p>
-<p>而若代码里有package语句，则要使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">javac <span class="_">-d</span> 指定的目录 filename.java   <span class="comment"># 如 javac -d F: filename.java</span></div></pre></td></tr></table></figure></p>
-<p> 执行后就会在指定目录里生成一个文件夹，如果指定目录是<code>.</code>，则代表当前目录。文件夹名字就是package的名字（设为pkname），接下来使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java pkname.filename</div></pre></td></tr></table></figure></p>
-<p>即可运行。</p>
-<p>若程序中用到多个.java文件或多个.class文件也可使用这两条语句。</p>
-<p>附启发性网址：<a href="http://blog.sina.com.cn/s/blog_673bf2100100hrgd.html" target="_blank" rel="external">cmd下的Java执行</a> </p>
-<h3 id="其他常见问题："><a href="#其他常见问题：" class="headerlink" title="其他常见问题："></a>其他常见问题：</h3><h4 id="javac-和-java-的版本不同："><a href="#javac-和-java-的版本不同：" class="headerlink" title="javac  和 java 的版本不同："></a>javac  和 java 的版本不同：</h4><p>在cmd下输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -version  //显示java命令的版本号</div></pre></td></tr></table></figure></p>
-<p>和<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">javac -version     //显示javac命令的版本号</div></pre></td></tr></table></figure></p>
-<p>如果<code>java</code>的版本号高于<code>javac</code>的版本号，java还是可以正常运行的。但如果<code>java</code>的版本号低于<code>javac</code>，则java无法正常运行。因为低版本的java无法运行高版本的javac所编译出的.class文件。</p>
-<p>解决方法附网址：<a href="http://blog.csdn.net/feihong247/article/details/7878873" target="_blank" rel="external"> java与javac版本不一致问题</a></p>
-<p>如果网址失效，则百度“java与javac版本”</p>
-<h3 id="环境变量设置问题："><a href="#环境变量设置问题：" class="headerlink" title="环境变量设置问题："></a>环境变量设置问题：</h3><p>首先解释一下环境变量应该设置用户的还是系统的，附网址：<a href="http://www.blogjava.net/tyjava/articles/390788.html" target="_blank" rel="external">环境变量中系统变量和用户的环境变量及在配置JAVA环境变量时两着有什么区别</a></p>
-<p>总体来说就是设置系统的则所有用户都能使用，设置用户的则当前用户可以使用，换个用户就不好使了。但在Windows上大多数人不存在这个问题，所以两个都可以。如果不确定的话，就设置系统的吧。再不放心就两个都设置一下（比如我。。）</p>
-<p>首先设置<code>JAVA_HOME</code>，我的是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># JAVA_HOME</span></div><div class="line"></div><div class="line">D:\Java\jdk1.8.0_05    </div><div class="line"></div><div class="line"><span class="comment"># 注意此处是D:\Java\jdk1.8.0_05还是D:\Java\jdk1.8.0_05\      ，两者差了一个“\”</span></div></pre></td></tr></table></figure></p>
-<p>然后是PATH<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># PATH</span></div><div class="line"><span class="comment"># 在原有的PATH值最前面加上</span></div><div class="line"></div><div class="line">.;%JAVA_HOME%\bin;    </div><div class="line"></div><div class="line"><span class="comment"># 注意此处以“.”开头，表示当前目录。</span></div><div class="line"><span class="comment"># 而这里的%JAVA_HOME%也就相当于上面你为它赋值的那一串，</span></div><div class="line"><span class="comment"># 所以如果你的%JAVA_HOME%是带“\”的，</span></div><div class="line"><span class="comment"># 你的PATH添加的内容就该是 .;%JAVA_HOME%bin;</span></div></pre></td></tr></table></figure></p>
-<p>然后是CLASSPATH<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># CLASSPATH</span></div><div class="line"></div><div class="line">.;%JAVA_HOME%\lib\tools.jar;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib;    </div><div class="line"></div><div class="line"><span class="comment"># 此处依然以“.”开头，表示当前目录，</span></div><div class="line"><span class="comment"># 这样你才能cd进入一个目录并执行该目录下的.java文件。</span></div><div class="line"><span class="comment"># 至于lib前面的“\”加不加，同PATH的处理方法。</span></div></pre></td></tr></table></figure></p>
-<p> 附网址一个：<a href="http://blog.163.com/zhouru729@126/blog/static/82764270200711423542180/" target="_blank" rel="external">实例详解classpath</a></p>
-<ul>
-<li>2015-05-28 22:23:09</li>
+<li>随笔写于2016.7.13</li>
 </ul>
 ]]></content>
     </entry>
