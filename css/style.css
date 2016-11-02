@@ -5,6 +5,9 @@
  * @version 2.0
  * @link http://chopstack.com
  */
+.pure-u-1-4 {
+  background-color: #eee; }
+
 /*
 pure css setting
 When setting the primary font stack, apply it to the Pure grid units along
@@ -17,7 +20,7 @@ html, button, input, select, textarea,
   font-family: "PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI", "Hiragino Sans GB", "Source Han Sans CN", "Microsoft YaHei", "STHeiti", "WenQuanYi Micro Hei", sans-serif; }
 
 body {
-  background-color: #FFF;
+  background-color: #F5F5F5;
   color: #444;
   font-family: "TIBch", "Classic Grotesque W01", "Helvetica Neue", Arial, "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -25,11 +28,13 @@ body {
   font-size: 14px; }
 
 .body_container {
-  padding: 0 60px;
+  background-color: #FFF;
+  padding: 0 0px;
   max-width: 1150px;
   margin: 0 auto; }
 
 .content_container {
+  padding-left: 50px;
   padding-right: 50px;
   padding-top: 20px; }
 
@@ -54,7 +59,8 @@ div {
   box-sizing: border-box; }
 
 #header {
-  padding: 58px 0 0;
+  background-color: #333333;
+  padding: 58px 50px 100px 80px;
   text-align: left;
   border-bottom: 1px solid #ddd;
   position: relative; }
@@ -67,30 +73,32 @@ div {
       overflow: hidden; }
     #header .site-name #logo {
       font: bold 38px/1.12 "Times New Roman", Georgia, Times, sans-serif;
-      color: #555; }
+      color: #ddd; }
       #header .site-name #logo span, #header .site-name #logo:hover {
         color: #777; }
     #header .site-name .description {
       margin: .2em 0 0;
-      color: #999; }
+      color: #ccc; }
   #header #nav-menu {
     margin: 10px 0 -1px;
     padding: 0;
     position: absolute;
-    right: 0;
+    left: 30px;
     bottom: 0; }
     #header #nav-menu a {
       display: inline-block;
       padding: 3px 20px 3px;
       line-height: 30px;
-      color: #444;
+      color: #ddd;
       font-size: 13px;
       border: 1px solid transparent; }
       #header #nav-menu a:hover {
-        border-bottom-color: #444; }
+        border-bottom-color: #fff; }
       #header #nav-menu a.current {
         border: 1px solid #ddd;
-        border-bottom-color: #fff; }
+        border-bottom-color: #fff;
+        background-color: #fff;
+        color: #444; }
 
 #sidebar {
   border-left: 1px solid #ddd;
@@ -165,11 +173,14 @@ div {
     margin: 0;
     color: #555;
     text-align: left;
-    font: bold 25px/1.1 "ff-tisa-web-pro", Cambria, "Times New Roman", Georgia, Times, sans-serif; }
+    font: bold 15px/1.1 "ff-tisa-web-pro", Cambria, "Times New Roman", Georgia, Times, sans-serif;
+    background-color: #eee;
+    padding: 10px;
+    border-left: 5px solid #555; }
     .post .post-title a {
       color: #555; }
   .post .post-meta {
-    padding: 0;
+    padding-left: 10px;
     margin: 15px 0 0;
     color: #6E7173;
     float: left;
@@ -215,10 +226,11 @@ div {
       color: #444; }
   .post .post-content {
     clear: left;
-    font-size: 15px;
+    font-size: 13px;
     line-height: 1.77;
     color: #444;
     padding-top: 15px;
+    padding-left: 30px;
     text-align: justify;
     text-justify: distribute;
     word-break: normal; }
@@ -350,7 +362,8 @@ div {
   .body_container {
     padding: 0 30px; }
   .content_container {
-    padding-right: 15px; }
+    padding-right: 15px;
+    padding-left: 15px; }
   .hidden_mid_and_down {
     display: none !important; }
   #sidebar {
