@@ -96,7 +96,7 @@ javac 命令可以正常运行，而java命令有时可以正常运行，有时�
 javac 命令可以正常运行，而java命令有时可以正常运行，有时却不可以，不可以的症状就是显示找不到或无法加载主类。
 在网上找了各种资料，最终发现是因为代码里含有package语句，所以无法在cmd下运行java命令解释.class文件。而那些可以运行的文件就是因为没有使用package语句。
 这种问题">
-<meta property="og:updated_time" content="2016-11-01T14:20:16.977Z">
+<meta property="og:updated_time" content="2016-11-02T06:00:49.284Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java cmd（即Java的JDK配置及相关常用命令）">
 <meta name="twitter:description" content="找不到或无法加载主类这段时间一直纠结于cmd下Java无法编译运行的问题。主要问题描述如下：
@@ -203,10 +203,10 @@ javac 命令可以正常运行，而java命令有时可以正常运行，有时�
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
             
-            关于
+            分类
           </a>
         </li>
       
@@ -215,6 +215,14 @@ javac 命令可以正常运行，而java命令有时可以正常运行，有时�
           <a href="/guestbook" rel="section">
             
             留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
           </a>
         </li>
       
@@ -339,7 +347,7 @@ javac 命令可以正常运行，而java命令有时可以正常运行，有时�
         <h3 id="找不到或无法加载主类"><a href="#找不到或无法加载主类" class="headerlink" title="找不到或无法加载主类"></a>找不到或无法加载主类</h3><p>这段时间一直纠结于cmd下Java无法编译运行的问题。主要问题描述如下：</p>
 <p><code>javac</code> 命令可以正常运行，而<code>java</code>命令有时可以正常运行，有时却不可以，不可以的症状就是显示<code>找不到或无法加载主类</code>。</p>
 <p>在网上找了各种资料，最终发现是因为代码里含有<code>package</code>语句，所以无法在cmd下运行java命令解释.class文件。而那些可以运行的文件就是因为没有使用<code>package</code>语句。</p>
-<p>这种问题的解决方法就是使用几个特殊的命令。</p>
+<p>这种问题的解决方法就是使用几个特殊的命令。<br><a id="more"></a></p>
 <p>常用的命令是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 此处注释采用“#”，若要复制代码到cmd，请勿复制注释部分</span></div><div class="line"><span class="comment"># 设.java文件名为 filename</span></div><div class="line"><span class="comment"># 注意主类的名字和文件名完全相同，包括大小写。</span></div><div class="line"></div><div class="line">javac filename.java</div><div class="line"></div><div class="line">java filename</div></pre></td></tr></table></figure></p>
 <p>而若代码里有package语句，则要使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">javac <span class="_">-d</span> 指定的目录 filename.java   <span class="comment"># 如 javac -d F: filename.java</span></div></pre></td></tr></table></figure></p>
 <p> 执行后就会在指定目录里生成一个文件夹，如果指定目录是<code>.</code>，则代表当前目录。文件夹名字就是package的名字（设为pkname），接下来使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java pkname.filename</div></pre></td></tr></table></figure></p>
@@ -472,10 +480,10 @@ javac 命令可以正常运行，而java命令有时可以正常运行，有时�
 
           
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories">
                 <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
-              
+              </a>
             </div>
           
 

@@ -84,22 +84,16 @@
 
 
 
-<meta name="description" content="Linux 终端:12345cat testin.txt|./test./test&amp;gt;testout.txtcat testin.txt|./test&amp;gt;testout.txt
-　　
-Windows cmd:　　　　12345　　test.exe&amp;lt;testin.txt　　test.exe&amp;gt;testout.txt　　test.exe&amp;lt;testin.txt&amp;gt;testou">
+<meta name="description" content="Linux 终端:12345cat testin.txt|./test./test&amp;gt;testout.txtcat testin.txt|./test&amp;gt;testout.txt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="重定向">
 <meta property="og:url" content="http://maxuewei2.git.io/2016/09/12/重定向/index.html">
 <meta property="og:site_name" content="maxuewei2">
-<meta property="og:description" content="Linux 终端:12345cat testin.txt|./test./test&amp;gt;testout.txtcat testin.txt|./test&amp;gt;testout.txt
-　　
-Windows cmd:　　　　12345　　test.exe&amp;lt;testin.txt　　test.exe&amp;gt;testout.txt　　test.exe&amp;lt;testin.txt&amp;gt;testou">
-<meta property="og:updated_time" content="2016-11-01T15:03:02.095Z">
+<meta property="og:description" content="Linux 终端:12345cat testin.txt|./test./test&amp;gt;testout.txtcat testin.txt|./test&amp;gt;testout.txt">
+<meta property="og:updated_time" content="2016-11-02T06:08:39.344Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="重定向">
-<meta name="twitter:description" content="Linux 终端:12345cat testin.txt|./test./test&amp;gt;testout.txtcat testin.txt|./test&amp;gt;testout.txt
-　　
-Windows cmd:　　　　12345　　test.exe&amp;lt;testin.txt　　test.exe&amp;gt;testout.txt　　test.exe&amp;lt;testin.txt&amp;gt;testou">
+<meta name="twitter:description" content="Linux 终端:12345cat testin.txt|./test./test&amp;gt;testout.txtcat testin.txt|./test&amp;gt;testout.txt">
 
 
 
@@ -200,10 +194,10 @@ Windows cmd:　　　　12345　　test.exe&amp;lt;testin.txt　　test.exe&amp;
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
             
-            关于
+            分类
           </a>
         </li>
       
@@ -212,6 +206,14 @@ Windows cmd:　　　　12345　　test.exe&amp;lt;testin.txt　　test.exe&amp;
           <a href="/guestbook" rel="section">
             
             留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
           </a>
         </li>
       
@@ -334,7 +336,7 @@ Windows cmd:　　　　12345　　test.exe&amp;lt;testin.txt　　test.exe&amp;
 
       
         <p>Linux 终端:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cat testin.txt|./<span class="built_in">test</span></div><div class="line"></div><div class="line">./<span class="built_in">test</span>&gt;testout.txt</div><div class="line"></div><div class="line">cat testin.txt|./<span class="built_in">test</span>&gt;testout.txt</div></pre></td></tr></table></figure></p>
-<p>　　</p>
+<a id="more"></a>
 <p>Windows cmd:　　　　<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">　　test.exe&lt;testin.txt</div><div class="line"></div><div class="line">　　test.exe&gt;testout.txt</div><div class="line"></div><div class="line">　　test.exe&lt;testin.txt&gt;testout.txt</div></pre></td></tr></table></figure></p>
 <p>C代码：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">freopen(<span class="string">"testin.txt"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line"></div><div class="line">fclose(<span class="built_in">stdin</span>);</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">freopen(<span class="string">"testout.txt"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line"></div><div class="line">fclose(<span class="built_in">stdout</span>);</div></pre></td></tr></table></figure></p>
 
@@ -453,10 +455,10 @@ Windows cmd:　　　　12345　　test.exe&amp;lt;testin.txt　　test.exe&amp;
 
           
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories">
                 <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
-              
+              </a>
             </div>
           
 

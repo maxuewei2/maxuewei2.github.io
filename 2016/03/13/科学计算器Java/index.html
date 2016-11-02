@@ -85,26 +85,20 @@
 
 
 <meta name="description" content="前记：　　　　大二学 Java 的时候写的，现在贴上来，只为留念。
-　　再翻代码，自己看着都头疼。一重重的 if 嵌套，当时写得费劲，现在看着更费劲。
-代码思想：　　代码的大致思想是这样：
-　　　　首先定义一个算式字符串。然后用户通过键盘或鼠标点击按钮输入字符，添加到算式字符串末尾。在每次用户输入字符之后，先判断该字符是否符合算式语法规则（如加号后不能再跟加号），不符合语法规则的字符不添加到算式字">
+　　再翻代码，自己看着都头疼。一重重的 if 嵌套，当时写得费劲，现在看着更费劲。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="科学计算器（JAVA实现）">
 <meta property="og:url" content="http://maxuewei2.git.io/2016/03/13/科学计算器Java/index.html">
 <meta property="og:site_name" content="maxuewei2">
 <meta property="og:description" content="前记：　　　　大二学 Java 的时候写的，现在贴上来，只为留念。
-　　再翻代码，自己看着都头疼。一重重的 if 嵌套，当时写得费劲，现在看着更费劲。
-代码思想：　　代码的大致思想是这样：
-　　　　首先定义一个算式字符串。然后用户通过键盘或鼠标点击按钮输入字符，添加到算式字符串末尾。在每次用户输入字符之后，先判断该字符是否符合算式语法规则（如加号后不能再跟加号），不符合语法规则的字符不添加到算式字">
+　　再翻代码，自己看着都头疼。一重重的 if 嵌套，当时写得费劲，现在看着更费劲。">
 <meta property="og:image" content="http://maxuewei2.git.io/imgs/caljava1.jpg">
 <meta property="og:image" content="http://maxuewei2.git.io/imgs/caljava2.jpg">
-<meta property="og:updated_time" content="2016-11-01T14:55:34.628Z">
+<meta property="og:updated_time" content="2016-11-02T06:02:25.461Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="科学计算器（JAVA实现）">
 <meta name="twitter:description" content="前记：　　　　大二学 Java 的时候写的，现在贴上来，只为留念。
-　　再翻代码，自己看着都头疼。一重重的 if 嵌套，当时写得费劲，现在看着更费劲。
-代码思想：　　代码的大致思想是这样：
-　　　　首先定义一个算式字符串。然后用户通过键盘或鼠标点击按钮输入字符，添加到算式字符串末尾。在每次用户输入字符之后，先判断该字符是否符合算式语法规则（如加号后不能再跟加号），不符合语法规则的字符不添加到算式字">
+　　再翻代码，自己看着都头疼。一重重的 if 嵌套，当时写得费劲，现在看着更费劲。">
 <meta name="twitter:image" content="http://maxuewei2.git.io/imgs/caljava1.jpg">
 
 
@@ -206,10 +200,10 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
             
-            关于
+            分类
           </a>
         </li>
       
@@ -218,6 +212,14 @@
           <a href="/guestbook" rel="section">
             
             留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
           </a>
         </li>
       
@@ -341,6 +343,7 @@
       
         <h3 id="前记："><a href="#前记：" class="headerlink" title="前记：　　"></a>前记：　　</h3><p>　　大二学 Java 的时候写的，现在贴上来，只为留念。</p>
 <p>　　再翻代码，自己看着都头疼。一重重的 if 嵌套，当时写得费劲，现在看着更费劲。</p>
+<a id="more"></a>
 <h3 id="代码思想："><a href="#代码思想：" class="headerlink" title="代码思想："></a>代码思想：</h3><p>　　代码的大致思想是这样：</p>
 <p>　　　　首先定义一个算式字符串。然后用户通过键盘或鼠标点击按钮输入字符，添加到算式字符串末尾。在每次用户输入字符之后，先判断该字符是否符合算式语法规则（如加号后不能再跟加号），不符合语法规则的字符不添加到算式字符串末尾。如果用户输入了等号，则进行计算并将计算结果显示出来。</p>
 <p>　　　　其中计算过程如下：<br>&gt;<br>　　　　首先将字符串转化为两个链表，一个存储浮点数，一个存储运算符。<br>&gt;<br>　　　　如 <code>3 + 2*4 - 4/2</code><br>&gt;<br>　　　　会被转换为两个链表：<br><code>3 2 4 4 2</code><br><code>+ * - /</code><br>&gt;<br>之后循环以下过程：<br>&gt;<br>　　　　　　在运算符链表中找到运算优先级最高的一个运算符（若有多个，取第一个）。假设其下标为 i（如在上例中，i = 1 ），然后在浮点数链表中找到下标为 i 和 i+1 的项，进行相应运算后，删除这两项，并把结果插入该位置。在运算符链表中删除该运算符。<br>&gt;<br>如上例中，执行一次运算后，链表为：<br><code>3 8 4 2</code><br><code>+ - /</code><br>&gt;<br>循环进行到浮点数链表中只有一个项目（也即操作符链表为空）。该项目即为算式计算结果。</p>
@@ -386,16 +389,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/13/抓鼠标的猫/" rel="next" title="抓鼠标的猫（Win32实现，Codeblocks+GCC编译）">
-                <i class="fa fa-chevron-left"></i> 抓鼠标的猫（Win32实现，Codeblocks+GCC编译）
+              <a href="/2016/03/13/爬虫/" rel="next" title="爬虫（Java实现）">
+                <i class="fa fa-chevron-left"></i> 爬虫（Java实现）
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/03/15/Glines游戏/" rel="prev" title="GLine游戏（Win32GUI实现，CodeBlocks+GCC编译）">
-                GLine游戏（Win32GUI实现，CodeBlocks+GCC编译） <i class="fa fa-chevron-right"></i>
+              <a href="/2016/03/13/抓鼠标的猫/" rel="prev" title="抓鼠标的猫（Win32实现，Codeblocks+GCC编译）">
+                抓鼠标的猫（Win32实现，Codeblocks+GCC编译） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -471,10 +474,10 @@
 
           
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories">
                 <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
-              
+              </a>
             </div>
           
 

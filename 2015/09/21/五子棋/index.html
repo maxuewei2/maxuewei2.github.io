@@ -98,12 +98,7 @@
 成果
 
 
-完整代码
-
-
-
-&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;
-程序布局首先说明整个五子棋程序的整体布局。（用Java实现）1234567891011121314151617181920212223242526class Chess&amp;#123;    //界面类　　Player player1 ;　　Player player2;　　Ch">
+完整代码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="五子棋估值算法">
 <meta property="og:url" content="http://maxuewei2.git.io/2015/09/21/五子棋/index.html">
@@ -122,18 +117,13 @@
 成果
 
 
-完整代码
-
-
-
-&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;
-程序布局首先说明整个五子棋程序的整体布局。（用Java实现）1234567891011121314151617181920212223242526class Chess&amp;#123;    //界面类　　Player player1 ;　　Player player2;　　Ch">
+完整代码">
 <meta property="og:image" content="http://maxuewei2.git.io/imgs/wuziqi1.png">
 <meta property="og:image" content="http://maxuewei2.git.io/imgs/wuziqi2.png">
 <meta property="og:image" content="http://maxuewei2.git.io/imgs/wuziqi3.png">
 <meta property="og:image" content="http://maxuewei2.git.io/imgs/wuziqi4.png">
 <meta property="og:image" content="http://maxuewei2.git.io/imgs/wuziqi5.png">
-<meta property="og:updated_time" content="2016-11-02T01:43:13.536Z">
+<meta property="og:updated_time" content="2016-11-02T06:03:04.941Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="五子棋估值算法">
 <meta name="twitter:description" content="目录
@@ -150,12 +140,7 @@
 成果
 
 
-完整代码
-
-
-
-&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;
-程序布局首先说明整个五子棋程序的整体布局。（用Java实现）1234567891011121314151617181920212223242526class Chess&amp;#123;    //界面类　　Player player1 ;　　Player player2;　　Ch">
+完整代码">
 <meta name="twitter:image" content="http://maxuewei2.git.io/imgs/wuziqi1.png">
 
 
@@ -257,10 +242,10 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
             
-            关于
+            分类
           </a>
         </li>
       
@@ -269,6 +254,14 @@
           <a href="/guestbook" rel="section">
             
             留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
           </a>
         </li>
       
@@ -411,6 +404,7 @@
 </tr>
 </tbody>
 </table>
+<a id="more"></a>
 <p>&ensp;<br>&ensp;<br>&ensp;<br>&ensp;</p>
 <h2 id="程序布局"><a href="#程序布局" class="headerlink" title="程序布局"></a><h3 id="buju">程序布局</h3></h2><p>首先说明整个五子棋程序的整体布局。（用Java实现）<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Chess</span></span>&#123;    <span class="comment">//界面类</span></div><div class="line">　　Player player1 ;</div><div class="line">　　Player player2;</div><div class="line">　　ChessBox box;</div><div class="line">　　<span class="comment">//其余界面显示相关函数;</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Player</span></span>&#123;</div><div class="line">　　<span class="keyword">int</span> code;　　<span class="comment">//代号　　1:选手1    2:选手2</span></div><div class="line">　　ChessBox box; 　</div><div class="line">　　<span class="function"><span class="keyword">abstract</span> Point <span class="title">play</span><span class="params">()</span></span>; <span class="comment">//落子操作  　</span></div><div class="line">　　<span class="function"><span class="keyword">int</span> <span class="title">getLine</span><span class="params">(Point p, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">extends</span> <span class="title">Player</span></span>&#123;</div><div class="line"> 　　<span class="function">Point <span class="title">play</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y )</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Robot</span> <span class="keyword">extends</span> <span class="title">Player</span></span>&#123;　　<span class="comment">//机器</span></div><div class="line">　　<span class="function"><span class="keyword">int</span> <span class="title">evaluate</span><span class="params">(Point, <span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</div><div class="line">　　<span class="function"><span class="keyword">int</span> <span class="title">Evaluate</span><span class="params">(Point)</span></span>;</div><div class="line">　　<span class="function">Point <span class="title">play</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChessBox</span></span>&#123;</div><div class="line">　　<span class="keyword">int</span> chess_flag[<span class="number">15</span>][<span class="number">15</span>] <span class="comment">//0:空     1:选手1    2:选手2</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>&ensp;<br>&ensp;<br>&ensp;<br>&ensp;</p>
@@ -567,10 +561,10 @@
 
           
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories">
                 <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
-              
+              </a>
             </div>
           
 

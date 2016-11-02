@@ -85,25 +85,19 @@
 
 
 <meta name="description" content="最近用Notepad++写汇编，感觉用起来挺顺手，于是想能不能也在这个好用的编辑器下编写Java并编译运行呢，因为每次启动eclipse都要挺长时间，而且eclipse实在太占内存。。。
-于是各种百度之后，看网上的教程，使用Notepad++的NppExec(Notepad++的一个插件)实现了这一点。
-附网址：Notepad++直接编译运行java代码
-Notepad++ 配合JDK直接编译运行">
+于是各种百度之后，看网上的教程，使用Notepad++的NppExec(Notepad++的一个插件)实现了这一点。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Notepad++编译运行Java(自定义包)">
 <meta property="og:url" content="http://maxuewei2.git.io/2015/06/23/Notepad++编译运行Java(自定义包)/index.html">
 <meta property="og:site_name" content="maxuewei2">
 <meta property="og:description" content="最近用Notepad++写汇编，感觉用起来挺顺手，于是想能不能也在这个好用的编辑器下编写Java并编译运行呢，因为每次启动eclipse都要挺长时间，而且eclipse实在太占内存。。。
-于是各种百度之后，看网上的教程，使用Notepad++的NppExec(Notepad++的一个插件)实现了这一点。
-附网址：Notepad++直接编译运行java代码
-Notepad++ 配合JDK直接编译运行">
+于是各种百度之后，看网上的教程，使用Notepad++的NppExec(Notepad++的一个插件)实现了这一点。">
 <meta property="og:image" content="http://maxuewei2.git.io/imgs/notepad++_java.png">
-<meta property="og:updated_time" content="2016-11-02T01:37:58.254Z">
+<meta property="og:updated_time" content="2016-11-02T06:00:56.624Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Notepad++编译运行Java(自定义包)">
 <meta name="twitter:description" content="最近用Notepad++写汇编，感觉用起来挺顺手，于是想能不能也在这个好用的编辑器下编写Java并编译运行呢，因为每次启动eclipse都要挺长时间，而且eclipse实在太占内存。。。
-于是各种百度之后，看网上的教程，使用Notepad++的NppExec(Notepad++的一个插件)实现了这一点。
-附网址：Notepad++直接编译运行java代码
-Notepad++ 配合JDK直接编译运行">
+于是各种百度之后，看网上的教程，使用Notepad++的NppExec(Notepad++的一个插件)实现了这一点。">
 <meta name="twitter:image" content="http://maxuewei2.git.io/imgs/notepad++_java.png">
 
 
@@ -205,10 +199,10 @@ Notepad++ 配合JDK直接编译运行">
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
             
-            关于
+            分类
           </a>
         </li>
       
@@ -217,6 +211,14 @@ Notepad++ 配合JDK直接编译运行">
           <a href="/guestbook" rel="section">
             
             留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
           </a>
         </li>
       
@@ -339,8 +341,7 @@ Notepad++ 配合JDK直接编译运行">
 
       
         <p>最近用Notepad++写汇编，感觉用起来挺顺手，于是想能不能也在这个好用的编辑器下编写Java并编译运行呢，因为每次启动eclipse都要挺长时间，而且eclipse实在太占内存。。。</p>
-<p>于是各种百度之后，看网上的教程，使用Notepad++的NppExec(Notepad++的一个插件)实现了这一点。</p>
-<p>附网址：<br><a href="http://jingyan.baidu.com/article/a65957f4fedcc424e67f9bd1.html" target="_blank" rel="external">Notepad++直接编译运行java代码</a></p>
+<p>于是各种百度之后，看网上的教程，使用Notepad++的NppExec(Notepad++的一个插件)实现了这一点。<br><a id="more"></a><br>附网址：<br><a href="http://jingyan.baidu.com/article/a65957f4fedcc424e67f9bd1.html" target="_blank" rel="external">Notepad++直接编译运行java代码</a></p>
 <p><a href="http://jingyan.baidu.com/article/7082dc1c712b77e40a89bd8d.html" target="_blank" rel="external">Notepad++ 配合JDK直接编译运行java代码</a></p>
 <p>教程里基本都是用到了这两个命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">javac -encoding UTF-8 <span class="string">"<span class="variable">$(FULL_CURRENT_PATH)</span>"</span></div><div class="line"></div><div class="line">java -cp <span class="string">"<span class="variable">$(CURRENT_DIRECTORY)</span>"</span> <span class="string">"<span class="variable">$(NAME_PART)</span>"</span></div></pre></td></tr></table></figure>
@@ -514,10 +515,10 @@ Notepad++ 配合JDK直接编译运行">
 
           
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories">
                 <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
-              
+              </a>
             </div>
           
 
