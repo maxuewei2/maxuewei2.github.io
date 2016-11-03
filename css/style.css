@@ -83,7 +83,7 @@ div {
     margin: 10px 0 -1px;
     padding: 0;
     position: absolute;
-    left: 30px;
+    left: 5px;
     bottom: 0; }
     #header #nav-menu a {
       display: inline-block;
@@ -103,6 +103,7 @@ div {
 #sidebar {
   border-left: 1px solid #ddd;
   padding-left: 35px;
+  padding-right: 35px;
   margin-top: 40px;
   padding-bottom: 20px;
   word-wrap: break-word; }
@@ -128,7 +129,9 @@ div {
       margin-top: 10px; }
       #sidebar .widget .tagcloud a {
         line-height: 1.5;
-        padding: 5px; }
+        padding: 2px 2px;
+        margin: 0;
+        display: inline-block; }
     #sidebar .widget ul {
       list-style: none;
       padding: 0; }
