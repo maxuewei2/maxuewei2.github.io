@@ -85,61 +85,31 @@
 
 
 <meta name="description" content="目录
-
-
-
-
 程序布局
-
-
 估值算法
-
-
 成果
-
-
 完整代码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="五子棋估值算法">
 <meta property="og:url" content="http://maxuewei2.git.io/2015/09/21/五子棋/index.html">
 <meta property="og:site_name" content="maxuewei2">
 <meta property="og:description" content="目录
-
-
-
-
 程序布局
-
-
 估值算法
-
-
 成果
-
-
 完整代码">
 <meta property="og:image" content="http://maxuewei2.git.io/imgs/wuziqi1.png">
 <meta property="og:image" content="http://maxuewei2.git.io/imgs/wuziqi2.png">
 <meta property="og:image" content="http://maxuewei2.git.io/imgs/wuziqi3.png">
 <meta property="og:image" content="http://maxuewei2.git.io/imgs/wuziqi4.png">
 <meta property="og:image" content="http://maxuewei2.git.io/imgs/wuziqi5.png">
-<meta property="og:updated_time" content="2016-11-02T06:03:04.941Z">
+<meta property="og:updated_time" content="2016-11-03T13:05:01.911Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="五子棋估值算法">
 <meta name="twitter:description" content="目录
-
-
-
-
 程序布局
-
-
 估值算法
-
-
 成果
-
-
 完整代码">
 <meta name="twitter:image" content="http://maxuewei2.git.io/imgs/wuziqi1.png">
 
@@ -383,27 +353,15 @@
       
 
       
-        <table>
-<thead>
-<tr>
-<th>目录</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="#buju">程序布局</a></td>
-</tr>
-<tr>
-<td><a href="#guzhi">估值算法</a></td>
-</tr>
-<tr>
-<td><a href="#chengguo">成果</a></td>
-</tr>
-<tr>
-<td><a href="#daima">完整代码</a></td>
-</tr>
-</tbody>
-</table>
+        <ul>
+<li>目录<ul>
+<li><a href="#buju">程序布局</a></li>
+<li><a href="#guzhi">估值算法</a></li>
+<li><a href="#chengguo">成果</a></li>
+<li><a href="#daima">完整代码</a></li>
+</ul>
+</li>
+</ul>
 <a id="more"></a>
 <p>&ensp;<br>&ensp;<br>&ensp;<br>&ensp;</p>
 <h2 id="程序布局"><a href="#程序布局" class="headerlink" title="程序布局"></a><h3 id="buju">程序布局</h3></h2><p>首先说明整个五子棋程序的整体布局。（用Java实现）<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Chess</span></span>&#123;    <span class="comment">//界面类</span></div><div class="line">　　Player player1 ;</div><div class="line">　　Player player2;</div><div class="line">　　ChessBox box;</div><div class="line">　　<span class="comment">//其余界面显示相关函数;</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Player</span></span>&#123;</div><div class="line">　　<span class="keyword">int</span> code;　　<span class="comment">//代号　　1:选手1    2:选手2</span></div><div class="line">　　ChessBox box; 　</div><div class="line">　　<span class="function"><span class="keyword">abstract</span> Point <span class="title">play</span><span class="params">()</span></span>; <span class="comment">//落子操作  　</span></div><div class="line">　　<span class="function"><span class="keyword">int</span> <span class="title">getLine</span><span class="params">(Point p, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">extends</span> <span class="title">Player</span></span>&#123;</div><div class="line"> 　　<span class="function">Point <span class="title">play</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y )</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Robot</span> <span class="keyword">extends</span> <span class="title">Player</span></span>&#123;　　<span class="comment">//机器</span></div><div class="line">　　<span class="function"><span class="keyword">int</span> <span class="title">evaluate</span><span class="params">(Point, <span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</div><div class="line">　　<span class="function"><span class="keyword">int</span> <span class="title">Evaluate</span><span class="params">(Point)</span></span>;</div><div class="line">　　<span class="function">Point <span class="title">play</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChessBox</span></span>&#123;</div><div class="line">　　<span class="keyword">int</span> chess_flag[<span class="number">15</span>][<span class="number">15</span>] <span class="comment">//0:空     1:选手1    2:选手2</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -423,7 +381,74 @@
 <h4 id="棋型判断"><a href="#棋型判断" class="headerlink" title="棋型判断"></a>棋型判断</h4><p>　　对于方向的处理完成后，就是棋型的判断。判断棋型时需要区分当前所判断的棋型是哪一方的，假设当前所判断的棋型所属方的代号为plyer，则它的值可以是1或2，而要确定这个plyer是自己还是对方，就需要和自己的代号比对一下，假设自己的代号是me。则这个判断棋型的函数应该满足以下要求：给出一个点p，自己的代号me，一个plyer，能得出当前点对应plyer的权值。于是函数形式如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">evaluate</span><span class="params">(Point p, <span class="keyword">int</span> me,<span class="keyword">int</span> plyer)</span></span>;</div></pre></td></tr></table></figure></p>
 <p>　　然后结合已有的算法结构，参考下图（网上找到的）</p>
 <p><img src="/imgs/wuziqi2.png" alt="判断"></p>
-<p>　　将棋型分为以下几种：<br>&gt;<br> 棋型|编码<br> —-|—-<br>活四 |01111<em><br>死四A |21111</em><br>死四B |111<em>1<br>死四C |11</em>11<br>活三（近三位置） |111<em>0<br>活三（远三位置） |1110</em><br>死三            |11<em>1<br>&gt;<br>其中代号及含义如下：<br>&gt;<br>代号|含义<br>—-|—<br> \</em> |   当前空位置;<br> 0  |   其他空位置;<br> 1    | plyer(当前所计算的player的代号);<br> 2   |3 - plyer (对方的代号);</p>
+<p>　　将棋型分为以下几种：</p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th>棋型</th>
+<th>编码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>活四</td>
+<td>01111*</td>
+</tr>
+<tr>
+<td>死四A</td>
+<td>21111*</td>
+</tr>
+<tr>
+<td>死四B</td>
+<td>111*1</td>
+</tr>
+<tr>
+<td>死四C</td>
+<td>11*11</td>
+</tr>
+<tr>
+<td>活三（近三位置）</td>
+<td>111*0</td>
+</tr>
+<tr>
+<td>活三（远三位置）</td>
+<td>1110*</td>
+</tr>
+<tr>
+<td>死三</td>
+<td>11*1</td>
+</tr>
+</tbody>
+</table>
+<p>其中代号及含义如下：</p>
+<table>
+<thead>
+<tr>
+<th>代号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> *</td>
+<td>当前空位置;</td>
+</tr>
+<tr>
+<td> 0</td>
+<td>其他空位置;</td>
+</tr>
+<tr>
+<td> 1</td>
+<td>plyer(当前所计算的player的代号);</td>
+</tr>
+<tr>
+<td> 2</td>
+<td>3 - plyer (对方的代号);</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
 <p>　　</p>
 <p>此外由于两个或多个方向上都有活二的棋型较为常见且胜率较高（见下图）。所以又增加对此种棋型的判断。</p>
 <p><img src="/imgs/wuziqi3.png" alt="活二"></p>
