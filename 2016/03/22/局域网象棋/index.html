@@ -132,7 +132,7 @@ Client.h
 END">
 <meta property="og:image" content="http://maxuewei2.git.io/imgs/xiangqi1.jpg">
 <meta property="og:image" content="http://maxuewei2.git.io/imgs/xiangqi2.jpg">
-<meta property="og:updated_time" content="2016-11-03T13:20:10.206Z">
+<meta property="og:updated_time" content="2016-11-03T13:44:26.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="局域网象棋游戏（C++实现，使用Socket，界面使用Win32，CodeBlocks+GCC编译）">
 <meta name="twitter:description" content="&amp;gt;
@@ -453,10 +453,7 @@ END">
 <p>　　所以在程序开始运行后，会让用户输入对方的IP 地址，然后Server 开始监听。之后Client 开始向对方发出连接请求。</p>
 <p>　　Server 监听时，如果收到连接请求，就看对方的IP 地址是否是用户输入的IP 地址，如果不是，说明连接请求不是用户所希望的对方发送的，那就继续监听。</p>
 <p>　　Client 请求连接时，如果对方同意了，就要开始确定自己的颜色了。</p>
-<p>　　确定颜色这里困扰了我很久，最后采用的解决方法是这样的：<br>&gt;<br>　　　　核心思想就是谁先发出连接请求，谁就是黑色。</p>
-<blockquote>
-<p>　　　　也就是在Client 连接上对方之后，要判断Server 是不是已经连接了对方，如果Server 已连接，就说明是对方先发出的连接请求，那么对方就是黑色，自己就设为白色。如果Server 没有连接，就说明自己先连接上了对方，也就是自己是黑色。</p>
-</blockquote>
+<p>　　确定颜色这里困扰了我很久，最后采用的解决方法是这样的：<br>&gt;<br>　　　　核心思想就是谁先发出连接请求，谁就是黑色。<br>&gt;<br>　　　　也就是在Client 连接上对方之后，要判断Server 是不是已经连接了对方，如果Server 已连接，就说明是对方先发出的连接请求，那么对方就是黑色，自己就设为白色。如果Server 没有连接，就说明自己先连接上了对方，也就是自己是黑色。</p>
 <p>　　以上就是编码前及编码时的大致想法。</p>
 <p></p><h2 id="daima">代码</h2><p></p>
 <h3 id="main">main.cpp</h3>
