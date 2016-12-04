@@ -1,34 +1,601 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="做一个优雅的变态..."><title>maxuewei2 | Xlc Love Coding</title><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">maxuewei2</h1><a id="logo" href="/.">maxuewei2</a><p class="description">Xlc Love Coding</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/guestbook/"><i class="fa fa-book"> 留言</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h2 class="post-title"><a href="/2016/04/12/FlappyBird/">Flappy Bird (Java实现)</a></h2><div class="post-meta">2016-04-12</div><div class="post-content"><h3 id="运行效果："><a href="#运行效果：" class="headerlink" title="运行效果："></a>运行效果：</h3><p><img src="/imgs/flappybird1.jpg" alt="效果"><br></div><p class="readmore"><a href="/2016/04/12/FlappyBird/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/03/22/局域网象棋/">局域网象棋游戏（C++实现，使用Socket，界面使用Win32，CodeBlocks+GCC编译）</a></h2><div class="post-meta">2016-03-22</div><div class="post-content"><blockquote>
-<ul>
-<li>目录<ul>
-<li><a href="#chengguo">成果</a><ul>
-<li><a href="#xiaoguo">运行效果图</a></li>
-</ul>
-</li>
-<li><a href="#guocheng">过程</a><ul>
-<li><a href="#liangduan">1. 首先的问题是下棋的两端应该是什么样的？</a></li>
-<li><a href="#cunchu">2. 接下来的问题是怎么表示，怎么存储？</a></li>
-<li><a href="#tongxin">3. 然后应该怎么通信呢？</a></li>
-</ul>
-</li>
-<li><a href="#daima">代码</a><ul>
-<li><a href="#main">main.cpp</a></li>
-<li><a href="#chess">chinese_chess.h</a></li>
-<li><a href="#server">Server.h</a></li>
-<li><a href="#client">Client.h</a></li>
-</ul>
-</li>
-<li><a href="#end">END</a></div><p class="readmore"><a href="/2016/03/22/局域网象棋/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/03/20/Shell实现/">Shell（C++实现，CodeBlocks+GCC编译）</a></h2><div class="post-meta">2016-03-20</div><div class="post-content"><h3 id="程序效果："><a href="#程序效果：" class="headerlink" title="程序效果："></a>程序效果：</h3><p>　　只实现了login 、cd 、ls 、cat 四个命令。而且只能在 Windows 下运行。<br></div><p class="readmore"><a href="/2016/03/20/Shell实现/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/03/15/Glines游戏/">GLine游戏（Win32GUI实现，CodeBlocks+GCC编译）</a></h2><div class="post-meta">2016-03-15</div><div class="post-content"><h3 id="游戏规则："><a href="#游戏规则：" class="headerlink" title="游戏规则："></a>游戏规则：</h3><p>在10X10的棋盘上有五种颜色的棋子。</p>
-<p>点击一个棋子，再点击一个空格子，如果两者之间有一条路径的话，棋子会移动到空格子内。</p>
-<p>每移动一次，棋盘上会增加三个棋子，其位置和颜色都是随机的。</p>
-<p>当横向、竖向或斜向有五个或以上棋子有相同颜色时，这些棋子会消去。</p>
-<p>当棋盘上没有空格子时，游戏结束。</p>
-<p>得分为消去得棋子的个数。<br></div><p class="readmore"><a href="/2016/03/15/Glines游戏/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/03/13/抓鼠标的猫/">抓鼠标的猫（Win32实现，Codeblocks+GCC编译）</a></h2><div class="post-meta">2016-03-13</div><div class="post-content"><h3 id="程序效果："><a href="#程序效果：" class="headerlink" title="程序效果："></a>程序效果：</h3><p>猫的眼睛一直跟着鼠标移动：</p>
-<p><img src="/imgs/cat1.jpg" alt="cat"><br></div><p class="readmore"><a href="/2016/03/13/抓鼠标的猫/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/03/13/科学计算器Java/">科学计算器（JAVA实现）</a></h2><div class="post-meta">2016-03-13</div><div class="post-content"><h3 id="前记："><a href="#前记：" class="headerlink" title="前记：　　"></a>前记：　　</h3><p>　　大二学 Java 的时候写的，现在贴上来，只为留念。</p>
-<p>　　再翻代码，自己看着都头疼。一重重的 if 嵌套，当时写得费劲，现在看着更费劲。</p></div><p class="readmore"><a href="/2016/03/13/科学计算器Java/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/03/13/爬虫/">爬虫（Java实现）</a></h2><div class="post-meta">2016-03-13</div><div class="post-content"><h3 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h3><p>使用了htmlparser库。<br></div><p class="readmore"><a href="/2016/03/13/爬虫/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/03/13/贪吃蛇Java/">贪吃蛇（Java实现）</a></h2><div class="post-meta">2016-03-13</div><div class="post-content"><h3 id="程序效果："><a href="#程序效果：" class="headerlink" title="程序效果："></a>程序效果：</h3><p><img src="/imgs/tanchishejava.jpg" alt="xiaoguo"><br></div><p class="readmore"><a href="/2016/03/13/贪吃蛇Java/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/03/13/俄罗斯方块Java/">俄罗斯方块（Java实现）</a></h2><div class="post-meta">2016-03-13</div><div class="post-content"><h3 id="程序效果："><a href="#程序效果：" class="headerlink" title="程序效果："></a>程序效果：</h3><p><img src="/imgs/tetris.jpg" alt="xiaoguo"><br></div><p class="readmore"><a href="/2016/03/13/俄罗斯方块Java/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/03/13/贪吃蛇/">贪吃蛇（C++实现，VC6.0编译，使用了EasyX图形库）</a></h2><div class="post-meta">2016-03-13</div><div class="post-content"><h3 id="程序效果："><a href="#程序效果：" class="headerlink" title="程序效果："></a>程序效果：</h3><p><img src="/imgs/tanchishecpp.jpg" alt="效果1"><br><img src="/imgs/tanchishecpp1.jpg" alt="效果2"><br></div><p class="readmore"><a href="/2016/03/13/贪吃蛇/">阅读更多</a></p></div><nav class="page-navigator"><a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页</a></nav></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="https://maxuewei2.github.io"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/小工具/" style="font-size: 15px;">小工具</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/小游戏/" style="font-size: 15px;">小游戏</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/网络编程/" style="font-size: 15px;">网络编程</a> <a href="/tags/GUI/" style="font-size: 15px;">GUI</a> <a href="/tags/记录/" style="font-size: 15px;">记录</a> <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/Win32/" style="font-size: 15px;">Win32</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/网络/" style="font-size: 15px;">网络</a> <a href="/tags/图形库/" style="font-size: 15px;">图形库</a> <a href="/tags/编译/" style="font-size: 15px;">编译</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/28/FirstPost/">开始使用GitHub Pages</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/22/近期学到的/">近期学到的</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/12/重定向/">重定向</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/11/CCF记录/">CCF考试</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/13/简单的词法分析和语法分析/">简单的词法分析和语法分析（C++实现，CodeBlocks+GCC编译）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/03/ChatRoom/">聊天室（Java实现）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/08/俄罗斯C++/">俄罗斯方块（Win32实现，Codeblocks+GCC编译）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/08/迷宫/">Java迷宫游戏</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/读文件错误/">读文件错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/findstr/">在文件夹中 的指定类型文件中 查找字符串（CodeBlocks+GCC编译，控制台程序，仅能在Windows上运行）</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">maxuewei2.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/search.js?v=0.0.0"></script><script>var search_path = 'search.xml';
-if (search_path.length == 0) {
-   search_path = 'search.xml';
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="做一个优雅的变态...">
+    <title>xuewei | maxuewei2</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="做一个优雅的变态...">
+<meta property="og:type" content="website">
+<meta property="og:title" content="maxuewei2">
+<meta property="og:url" content="https://maxuewei2.github.io/page/2/index.html">
+<meta property="og:site_name" content="maxuewei2">
+<meta property="og:description" content="做一个优雅的变态...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="maxuewei2">
+<meta name="twitter:description" content="做一个优雅的变态...">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "/imgs/maxuewei2_avatar.png",
+  "name": "maxuewei2",
+  "url": "https://maxuewei2.github.io"
 }
-var path = '/' + search_path;
-searchFunc(path, 'local-search-input', 'local-search-result');
-</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.gmirror.org/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>maxuewei2</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">maxuewei2</a>
+                    
+                        <div class="meta">
+                            做一个优雅的变态
+                        </div>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        <div class="item">
+                            <i class="marker icon" style="float: left"></i>
+                            <div class="content">长春</div>
+                        </div>
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+
+                                <a href="https://github.com/maxuewei2"><i class="large github icon" style="float: left"></i></a>
+
+                            
+
+                                <a href="http://weibo.com/maxuewei2"><i class="large weibo icon" style="float: left"></i></a>
+
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+    
+
+    
+
+    
+    <a href="/about" class="item" >
+        <i class="user icon"></i>
+        关于
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        
+
+<div class="ui relaxed list">
+
+    
+
+    
+
+    <div class="item">
+
+        <div class="content post-content">
+
+    <a class="header" style="display: inline-block;" href="/2016/04/12/FlappyBird/">
+        
+        
+        Flappy Bird (Java实现)
+    </a>
+    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-04-11T16:00:00.000Z" itemprop="datePublished">2016-04-12</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/小游戏/">小游戏</a>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/Java/">Java</a>
+    </span>
+
+    
+
+    </span>
+</div>
+</div>
+
+    </div>
+
+    
+
+    
+
+    <div class="item">
+
+        <div class="content post-content">
+
+    <a class="header" style="display: inline-block;" href="/2016/03/22/局域网象棋/">
+        
+        
+        局域网象棋游戏（C++实现，使用Socket，界面使用Win32，CodeBlocks+GCC编译）
+    </a>
+    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-03-22T11:01:59.000Z" itemprop="datePublished">2016-03-22</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/小游戏/">小游戏</a>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/网络编程/">网络编程</a>
+    </span>
+
+    
+
+    </span>
+</div>
+</div>
+
+    </div>
+
+    
+
+    
+
+    <div class="item">
+
+        <div class="content post-content">
+
+    <a class="header" style="display: inline-block;" href="/2016/03/20/Shell实现/">
+        
+        
+        Shell（C++实现，CodeBlocks+GCC编译）
+    </a>
+    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-03-19T16:00:00.000Z" itemprop="datePublished">2016-03-20</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/小工具/">小工具</a>
+    </span>
+
+    
+
+    </span>
+</div>
+</div>
+
+    </div>
+
+    
+
+    
+
+    <div class="item">
+
+        <div class="content post-content">
+
+    <a class="header" style="display: inline-block;" href="/2016/03/15/Glines游戏/">
+        
+        
+        GLine游戏（Win32GUI实现，CodeBlocks+GCC编译）
+    </a>
+    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-03-14T16:00:00.000Z" itemprop="datePublished">2016-03-15</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/小游戏/">小游戏</a>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/C/">C++</a>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/Win32/">Win32</a>
+    </span>
+
+    
+
+    </span>
+</div>
+</div>
+
+    </div>
+
+    
+
+    
+
+    <div class="item">
+
+        <div class="content post-content">
+
+    <a class="header" style="display: inline-block;" href="/2016/03/13/科学计算器Java/">
+        
+        
+        科学计算器（JAVA实现）
+    </a>
+    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-03-13T15:13:59.000Z" itemprop="datePublished">2016-03-13</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/数据结构/">数据结构</a>
+    </span>
+
+    
+
+    </span>
+</div>
+</div>
+
+    </div>
+
+    
+
+    
+
+    <div class="item">
+
+        <div class="content post-content">
+
+    <a class="header" style="display: inline-block;" href="/2016/03/13/抓鼠标的猫/">
+        
+        
+        抓鼠标的猫（Win32实现，Codeblocks+GCC编译）
+    </a>
+    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-03-13T15:13:59.000Z" itemprop="datePublished">2016-03-13</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/Win32/">Win32</a>
+    </span>
+
+    
+
+    </span>
+</div>
+</div>
+
+    </div>
+
+    
+
+    
+
+    <div class="item">
+
+        <div class="content post-content">
+
+    <a class="header" style="display: inline-block;" href="/2016/03/13/爬虫/">
+        
+        
+        爬虫（Java实现）
+    </a>
+    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-03-13T15:12:59.000Z" itemprop="datePublished">2016-03-13</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/网络/">网络</a>
+    </span>
+
+    
+
+    </span>
+</div>
+</div>
+
+    </div>
+
+    
+
+    
+
+    <div class="item">
+
+        <div class="content post-content">
+
+    <a class="header" style="display: inline-block;" href="/2016/03/13/贪吃蛇/">
+        
+        
+        贪吃蛇（C++实现，VC6.0编译，使用了EasyX图形库）
+    </a>
+    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-03-13T15:12:59.000Z" itemprop="datePublished">2016-03-13</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/小游戏/">小游戏</a>
+    </span>
+
+    
+
+    </span>
+</div>
+</div>
+
+    </div>
+
+    
+
+    
+
+    <div class="item">
+
+        <div class="content post-content">
+
+    <a class="header" style="display: inline-block;" href="/2016/03/13/贪吃蛇Java/">
+        
+        
+        贪吃蛇（Java实现）
+    </a>
+    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-03-13T15:12:59.000Z" itemprop="datePublished">2016-03-13</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/小游戏/">小游戏</a>
+    </span>
+
+    
+
+    </span>
+</div>
+</div>
+
+    </div>
+
+    
+
+    
+
+    <div class="item">
+
+        <div class="content post-content">
+
+    <a class="header" style="display: inline-block;" href="/2016/03/13/俄罗斯方块Java/">
+        
+        
+        俄罗斯方块（Java实现）
+    </a>
+    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-03-13T15:12:59.000Z" itemprop="datePublished">2016-03-13</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/小游戏/">小游戏</a>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/Java/">Java</a>
+    </span>
+
+    
+
+    </span>
+</div>
+</div>
+
+    </div>
+
+    
+</div>
+
+
+
+    
+        
+        <div class="ui pagination menu"><a class="item" href="/">1</a><span class="item active">2</span><a class="item" href="/page/3/">3</a></div>
+    
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2016 <a href="/">maxuewei2</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

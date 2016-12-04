@@ -1,18 +1,318 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="做一个优雅的变态..."><title>在文件夹中 的指定类型文件中 查找字符串（CodeBlocks+GCC编译，控制台程序，仅能在Windows上运行） | maxuewei2</title><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">在文件夹中 的指定类型文件中 查找字符串（CodeBlocks+GCC编译，控制台程序，仅能在Windows上运行）</h1><a id="logo" href="/.">maxuewei2</a><p class="description">Xlc Love Coding</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/guestbook/"><i class="fa fa-book"> 留言</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">在文件夹中 的指定类型文件中 查找字符串（CodeBlocks+GCC编译，控制台程序，仅能在Windows上运行）</h1><div class="post-meta">Apr 15, 2016<span> | </span><span class="category"><a href="/categories/学习/">学习</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><h3 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h3><p>　　程序使用 io.h 中的<code>_findfirst</code> 和 <code>_findnext</code> 函数遍历文件夹，故而程序只能在 Windows 下使用。　　</p>
-<p>　　程序遍历当前文件夹，对其中的文件夹执行递归遍历。同时检查遍历到的文件是否属于指定类型，如果是，则将在该文件中查找指定字符串。　</p>
-<p>　　在文件中查找字符串时，开辟一个与指定字符串 text （长度为len ）同样大小的字符串数组 temp 。数组上有两个指针：一个是字符串比较的开始位置 s ，一个是新字符写入的位置 d 。每从文件中读入一个字符，就写入 temp[d] ，之后 temp 从 s 到 d 与 text 从 0 到 len-1 比较，之后， s 与 d 均后移一位，再继续读入字符，写入，比较，后移。。。<br><a id="more"></a></p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;vector&gt;</div><div class="line">#include&lt;string.h&gt;</div><div class="line">#include&lt;io.h&gt;</div><div class="line">using namespace std;</div><div class="line"></div><div class="line">vector&lt;char*&gt; types;</div><div class="line">char text[256];</div><div class="line"></div><div class="line">void ls_path(char * path);</div><div class="line">bool is_in_types(char* filename);</div><div class="line">void findtext(char * filename,char* text);</div><div class="line"></div><div class="line">void solve(char* name,struct _finddata_t *f) &#123;</div><div class="line">    if(strcmp(f-&gt;name,".")==0)return ;</div><div class="line">    if(strcmp(f-&gt;name,"..")==0)return ;</div><div class="line">    char *fullpath=new char[256];</div><div class="line">    strcpy(fullpath,name);</div><div class="line">    int len=strlen(name);</div><div class="line">    fullpath[len-1]='\0';</div><div class="line">    strcat(fullpath,f-&gt;name);</div><div class="line">    if(f-&gt;attrib&amp;_A_SUBDIR) &#123;</div><div class="line">        strcat(fullpath,"/*");</div><div class="line">        ls_path(fullpath);</div><div class="line">    &#125; else &#123;</div><div class="line">        if(is_in_types(f-&gt;name)) &#123;</div><div class="line">            findtext(fullpath,text);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    delete fullpath;</div><div class="line">&#125;</div><div class="line">void ls_path(char * path) &#123;</div><div class="line">    struct _finddata_t f;</div><div class="line">    int p;</div><div class="line">    char *name=new char[260];</div><div class="line">    strcpy(name,path);</div><div class="line">    if((p=_findfirst(name, &amp;f))!=-1) &#123;</div><div class="line">        solve(name,&amp;f);</div><div class="line">        while(_findnext(p, &amp;f)==0) &#123;</div><div class="line">            solve(name,&amp;f);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    delete name;</div><div class="line">&#125;</div><div class="line">int strrncmp(char* a,const char* b,int n) &#123;//比较两字符串的最后n个字符</div><div class="line">    int len=strlen(a);</div><div class="line">    int j=0;</div><div class="line">    for(int i=len-n; i&lt;=len-1; i++) &#123;</div><div class="line">        if(a[i]!=b[j])return false;</div><div class="line">        j++;</div><div class="line">    &#125;</div><div class="line">    return j==n?true:false;</div><div class="line">&#125;</div><div class="line">bool is_in_types(char* filename) &#123;</div><div class="line">    for(int i=0; i&lt;types.size(); i++) &#123;</div><div class="line">        if(strrncmp(filename,types[i],strlen(types[i]))) &#123;</div><div class="line">            return true;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return false;</div><div class="line">&#125;</div><div class="line">bool cmp(const char* temp,const int len,const int s,const int d,const char* text) &#123;</div><div class="line">    int j=0;</div><div class="line">    for(int i=s;; i++,i%=len) &#123;</div><div class="line">        if(temp[i]!=text[j])return false;</div><div class="line">        if(i==d)break;</div><div class="line">        j++;</div><div class="line">    &#125;</div><div class="line">    return true;</div><div class="line">&#125;</div><div class="line">void findtext(char * filename,char* text) &#123;</div><div class="line">    FILE *f=fopen(filename,"r");</div><div class="line">    char c;</div><div class="line">    int linenum=0;</div><div class="line">    int len=strlen(text);</div><div class="line">    char* temp=new char[len];</div><div class="line">    int s=0,d=len-1;</div><div class="line">    while(c=fgetc(f),c!=EOF) &#123;</div><div class="line">        temp[d]=c;</div><div class="line">        if(cmp(temp,len,s,d,text))printf("文件名: %s \n行号: %d\n",filename,linenum+1);</div><div class="line">        if(c=='\n'||c=='\r'||c=='\r\n') &#123;</div><div class="line">            linenum++;</div><div class="line">        &#125;</div><div class="line">        d++;</div><div class="line">        d%=len;</div><div class="line">        s++;</div><div class="line">        s%=len;</div><div class="line">    &#125;</div><div class="line">    delete temp;</div><div class="line">    fclose(f);</div><div class="line">&#125;</div><div class="line">int main() &#123;</div><div class="line">    printf("**************************************\n");</div><div class="line">    printf("本程序在其所在文件夹中查找指定类型文件\n中是否有指定字符串，并输出所在行号。\n");</div><div class="line">    printf("              CopyRight:  maxuewei2\n");</div><div class="line">    printf("**************************************\n");</div><div class="line">    while(true) &#123;</div><div class="line">        types.clear();</div><div class="line">        printf("\n请输入要查找的字符串:\n");</div><div class="line">        while(gets(text),strcmp(text,"")==0);</div><div class="line">        printf("请输入文件类型，如‘txt’:(按两下ENTER开始查找)\n");</div><div class="line">        char t[30];</div><div class="line">        while(gets(t),strcmp(t,"")!=0) &#123;</div><div class="line">            char* tt=new char[30];</div><div class="line">            strcpy(tt,".");</div><div class="line">            strcat(tt,t);</div><div class="line">            types.push_back(tt);</div><div class="line">        &#125;</div><div class="line">        delete t;</div><div class="line">        printf("查找结果:\n");</div><div class="line">        ls_path("*");</div><div class="line">    &#125;</div><div class="line">    types.clear();</div><div class="line">    delete text;</div><div class="line">    getchar();</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="运行效果："><a href="#运行效果：" class="headerlink" title="运行效果："></a>运行效果：</h3><p><img src="/imgs/findstr.jpg" alt="xiaoguo"></p>
-<ul>
-<li><p>程序完成于2016.4.15</p>
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="做一个优雅的变态...">
+    <title>在文件夹中 的指定类型文件中 查找字符串（CodeBlocks+GCC编译，控制台程序，仅能在Windows上运行） | maxuewei2</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="说明：　　程序使用 io.h 中的_findfirst 和 _findnext 函数遍历文件夹，故而程序只能在 Windows 下使用。　　
+　　程序遍历当前文件夹，对其中的文件夹执行递归遍历。同时检查遍历到的文件是否属于指定类型，如果是，则将在该文件中查找指定字符串。　
+　　在文件中查找字符串时，开辟一个与指定字符串 text （长度为len ）同样大小的字符串数组 temp 。数组上有两个指针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在文件夹中 的指定类型文件中 查找字符串（CodeBlocks+GCC编译，控制台程序，仅能在Windows上运行）">
+<meta property="og:url" content="https://maxuewei2.github.io/2016/04/15/findstr/index.html">
+<meta property="og:site_name" content="maxuewei2">
+<meta property="og:description" content="说明：　　程序使用 io.h 中的_findfirst 和 _findnext 函数遍历文件夹，故而程序只能在 Windows 下使用。　　
+　　程序遍历当前文件夹，对其中的文件夹执行递归遍历。同时检查遍历到的文件是否属于指定类型，如果是，则将在该文件中查找指定字符串。　
+　　在文件中查找字符串时，开辟一个与指定字符串 text （长度为len ）同样大小的字符串数组 temp 。数组上有两个指针">
+<meta property="og:image" content="https://maxuewei2.github.io/imgs/findstr.jpg">
+<meta property="og:updated_time" content="2016-11-02T06:00:14.032Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在文件夹中 的指定类型文件中 查找字符串（CodeBlocks+GCC编译，控制台程序，仅能在Windows上运行）">
+<meta name="twitter:description" content="说明：　　程序使用 io.h 中的_findfirst 和 _findnext 函数遍历文件夹，故而程序只能在 Windows 下使用。　　
+　　程序遍历当前文件夹，对其中的文件夹执行递归遍历。同时检查遍历到的文件是否属于指定类型，如果是，则将在该文件中查找指定字符串。　
+　　在文件中查找字符串时，开辟一个与指定字符串 text （长度为len ）同样大小的字符串数组 temp 。数组上有两个指针">
+<meta name="twitter:image" content="https://maxuewei2.github.io/imgs/findstr.jpg">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "/imgs/maxuewei2_avatar.png",
+  "name": "maxuewei2",
+  "url": "https://maxuewei2.github.io"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.gmirror.org/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>maxuewei2</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">maxuewei2</a>
+                    
+                        <div class="meta">
+                            做一个优雅的变态
+                        </div>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        <div class="item">
+                            <i class="marker icon" style="float: left"></i>
+                            <div class="content">长春</div>
+                        </div>
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+
+                                <a href="https://github.com/maxuewei2"><i class="large github icon" style="float: left"></i></a>
+
+                            
+
+                                <a href="http://weibo.com/maxuewei2"><i class="large weibo icon" style="float: left"></i></a>
+
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+    
+
+    
+
+    
+    <a href="/about" class="item" >
+        <i class="user icon"></i>
+        关于
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-findstr" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    在文件夹中 的指定类型文件中 查找字符串（CodeBlocks+GCC编译，控制台程序，仅能在Windows上运行）
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h3 id="&#x8BF4;&#x660E;&#xFF1A;"><a href="#&#x8BF4;&#x660E;&#xFF1A;" class="headerlink" title="&#x8BF4;&#x660E;&#xFF1A;"></a>&#x8BF4;&#x660E;&#xFF1A;</h3><p>&#x3000;&#x3000;&#x7A0B;&#x5E8F;&#x4F7F;&#x7528; io.h &#x4E2D;&#x7684;<code>_findfirst</code> &#x548C; <code>_findnext</code> &#x51FD;&#x6570;&#x904D;&#x5386;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x6545;&#x800C;&#x7A0B;&#x5E8F;&#x53EA;&#x80FD;&#x5728; Windows &#x4E0B;&#x4F7F;&#x7528;&#x3002;&#x3000;&#x3000;</p>
+<p>&#x3000;&#x3000;&#x7A0B;&#x5E8F;&#x904D;&#x5386;&#x5F53;&#x524D;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x5BF9;&#x5176;&#x4E2D;&#x7684;&#x6587;&#x4EF6;&#x5939;&#x6267;&#x884C;&#x9012;&#x5F52;&#x904D;&#x5386;&#x3002;&#x540C;&#x65F6;&#x68C0;&#x67E5;&#x904D;&#x5386;&#x5230;&#x7684;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x5C5E;&#x4E8E;&#x6307;&#x5B9A;&#x7C7B;&#x578B;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x5C06;&#x5728;&#x8BE5;&#x6587;&#x4EF6;&#x4E2D;&#x67E5;&#x627E;&#x6307;&#x5B9A;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x3000;</p>
+<p>&#x3000;&#x3000;&#x5728;&#x6587;&#x4EF6;&#x4E2D;&#x67E5;&#x627E;&#x5B57;&#x7B26;&#x4E32;&#x65F6;&#xFF0C;&#x5F00;&#x8F9F;&#x4E00;&#x4E2A;&#x4E0E;&#x6307;&#x5B9A;&#x5B57;&#x7B26;&#x4E32; text &#xFF08;&#x957F;&#x5EA6;&#x4E3A;len &#xFF09;&#x540C;&#x6837;&#x5927;&#x5C0F;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x6570;&#x7EC4; temp &#x3002;&#x6570;&#x7EC4;&#x4E0A;&#x6709;&#x4E24;&#x4E2A;&#x6307;&#x9488;&#xFF1A;&#x4E00;&#x4E2A;&#x662F;&#x5B57;&#x7B26;&#x4E32;&#x6BD4;&#x8F83;&#x7684;&#x5F00;&#x59CB;&#x4F4D;&#x7F6E; s &#xFF0C;&#x4E00;&#x4E2A;&#x662F;&#x65B0;&#x5B57;&#x7B26;&#x5199;&#x5165;&#x7684;&#x4F4D;&#x7F6E; d &#x3002;&#x6BCF;&#x4ECE;&#x6587;&#x4EF6;&#x4E2D;&#x8BFB;&#x5165;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#xFF0C;&#x5C31;&#x5199;&#x5165; temp[d] &#xFF0C;&#x4E4B;&#x540E; temp &#x4ECE; s &#x5230; d &#x4E0E; text &#x4ECE; 0 &#x5230; len-1 &#x6BD4;&#x8F83;&#xFF0C;&#x4E4B;&#x540E;&#xFF0C; s &#x4E0E; d &#x5747;&#x540E;&#x79FB;&#x4E00;&#x4F4D;&#xFF0C;&#x518D;&#x7EE7;&#x7EED;&#x8BFB;&#x5165;&#x5B57;&#x7B26;&#xFF0C;&#x5199;&#x5165;&#xFF0C;&#x6BD4;&#x8F83;&#xFF0C;&#x540E;&#x79FB;&#x3002;&#x3002;&#x3002;<br><a id="more"></a></p>
+<h3 id="&#x4EE3;&#x7801;&#xFF1A;"><a href="#&#x4EE3;&#x7801;&#xFF1A;" class="headerlink" title="&#x4EE3;&#x7801;&#xFF1A;"></a>&#x4EE3;&#x7801;&#xFF1A;</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;vector&gt;</div><div class="line">#include&lt;string.h&gt;</div><div class="line">#include&lt;io.h&gt;</div><div class="line">using namespace std;</div><div class="line"></div><div class="line">vector&lt;char*&gt; types;</div><div class="line">char text[256];</div><div class="line"></div><div class="line">void ls_path(char * path);</div><div class="line">bool is_in_types(char* filename);</div><div class="line">void findtext(char * filename,char* text);</div><div class="line"></div><div class="line">void solve(char* name,struct _finddata_t *f) {</div><div class="line">    if(strcmp(f-&gt;name,&quot;.&quot;)==0)return ;</div><div class="line">    if(strcmp(f-&gt;name,&quot;..&quot;)==0)return ;</div><div class="line">    char *fullpath=new char[256];</div><div class="line">    strcpy(fullpath,name);</div><div class="line">    int len=strlen(name);</div><div class="line">    fullpath[len-1]=&apos;\0&apos;;</div><div class="line">    strcat(fullpath,f-&gt;name);</div><div class="line">    if(f-&gt;attrib&amp;_A_SUBDIR) {</div><div class="line">        strcat(fullpath,&quot;/*&quot;);</div><div class="line">        ls_path(fullpath);</div><div class="line">    } else {</div><div class="line">        if(is_in_types(f-&gt;name)) {</div><div class="line">            findtext(fullpath,text);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    delete fullpath;</div><div class="line">}</div><div class="line">void ls_path(char * path) {</div><div class="line">    struct _finddata_t f;</div><div class="line">    int p;</div><div class="line">    char *name=new char[260];</div><div class="line">    strcpy(name,path);</div><div class="line">    if((p=_findfirst(name, &amp;f))!=-1) {</div><div class="line">        solve(name,&amp;f);</div><div class="line">        while(_findnext(p, &amp;f)==0) {</div><div class="line">            solve(name,&amp;f);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    delete name;</div><div class="line">}</div><div class="line">int strrncmp(char* a,const char* b,int n) {//&#x6BD4;&#x8F83;&#x4E24;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x6700;&#x540E;n&#x4E2A;&#x5B57;&#x7B26;</div><div class="line">    int len=strlen(a);</div><div class="line">    int j=0;</div><div class="line">    for(int i=len-n; i&lt;=len-1; i++) {</div><div class="line">        if(a[i]!=b[j])return false;</div><div class="line">        j++;</div><div class="line">    }</div><div class="line">    return j==n?true:false;</div><div class="line">}</div><div class="line">bool is_in_types(char* filename) {</div><div class="line">    for(int i=0; i&lt;types.size(); i++) {</div><div class="line">        if(strrncmp(filename,types[i],strlen(types[i]))) {</div><div class="line">            return true;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    return false;</div><div class="line">}</div><div class="line">bool cmp(const char* temp,const int len,const int s,const int d,const char* text) {</div><div class="line">    int j=0;</div><div class="line">    for(int i=s;; i++,i%=len) {</div><div class="line">        if(temp[i]!=text[j])return false;</div><div class="line">        if(i==d)break;</div><div class="line">        j++;</div><div class="line">    }</div><div class="line">    return true;</div><div class="line">}</div><div class="line">void findtext(char * filename,char* text) {</div><div class="line">    FILE *f=fopen(filename,&quot;r&quot;);</div><div class="line">    char c;</div><div class="line">    int linenum=0;</div><div class="line">    int len=strlen(text);</div><div class="line">    char* temp=new char[len];</div><div class="line">    int s=0,d=len-1;</div><div class="line">    while(c=fgetc(f),c!=EOF) {</div><div class="line">        temp[d]=c;</div><div class="line">        if(cmp(temp,len,s,d,text))printf(&quot;&#x6587;&#x4EF6;&#x540D;: %s \n&#x884C;&#x53F7;: %d\n&quot;,filename,linenum+1);</div><div class="line">        if(c==&apos;\n&apos;||c==&apos;\r&apos;||c==&apos;\r\n&apos;) {</div><div class="line">            linenum++;</div><div class="line">        }</div><div class="line">        d++;</div><div class="line">        d%=len;</div><div class="line">        s++;</div><div class="line">        s%=len;</div><div class="line">    }</div><div class="line">    delete temp;</div><div class="line">    fclose(f);</div><div class="line">}</div><div class="line">int main() {</div><div class="line">    printf(&quot;**************************************\n&quot;);</div><div class="line">    printf(&quot;&#x672C;&#x7A0B;&#x5E8F;&#x5728;&#x5176;&#x6240;&#x5728;&#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x67E5;&#x627E;&#x6307;&#x5B9A;&#x7C7B;&#x578B;&#x6587;&#x4EF6;\n&#x4E2D;&#x662F;&#x5426;&#x6709;&#x6307;&#x5B9A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5E76;&#x8F93;&#x51FA;&#x6240;&#x5728;&#x884C;&#x53F7;&#x3002;\n&quot;);</div><div class="line">    printf(&quot;              CopyRight:  maxuewei2\n&quot;);</div><div class="line">    printf(&quot;**************************************\n&quot;);</div><div class="line">    while(true) {</div><div class="line">        types.clear();</div><div class="line">        printf(&quot;\n&#x8BF7;&#x8F93;&#x5165;&#x8981;&#x67E5;&#x627E;&#x7684;&#x5B57;&#x7B26;&#x4E32;:\n&quot;);</div><div class="line">        while(gets(text),strcmp(text,&quot;&quot;)==0);</div><div class="line">        printf(&quot;&#x8BF7;&#x8F93;&#x5165;&#x6587;&#x4EF6;&#x7C7B;&#x578B;&#xFF0C;&#x5982;&#x2018;txt&#x2019;:(&#x6309;&#x4E24;&#x4E0B;ENTER&#x5F00;&#x59CB;&#x67E5;&#x627E;)\n&quot;);</div><div class="line">        char t[30];</div><div class="line">        while(gets(t),strcmp(t,&quot;&quot;)!=0) {</div><div class="line">            char* tt=new char[30];</div><div class="line">            strcpy(tt,&quot;.&quot;);</div><div class="line">            strcat(tt,t);</div><div class="line">            types.push_back(tt);</div><div class="line">        }</div><div class="line">        delete t;</div><div class="line">        printf(&quot;&#x67E5;&#x627E;&#x7ED3;&#x679C;:\n&quot;);</div><div class="line">        ls_path(&quot;*&quot;);</div><div class="line">    }</div><div class="line">    types.clear();</div><div class="line">    delete text;</div><div class="line">    getchar();</div><div class="line">    return 0;</div><div class="line">}</div></pre></td></tr></table></figure>
+<h3 id="&#x8FD0;&#x884C;&#x6548;&#x679C;&#xFF1A;"><a href="#&#x8FD0;&#x884C;&#x6548;&#x679C;&#xFF1A;" class="headerlink" title="&#x8FD0;&#x884C;&#x6548;&#x679C;&#xFF1A;"></a>&#x8FD0;&#x884C;&#x6548;&#x679C;&#xFF1A;</h3><p><a class="magnific-img" href="/imgs/findstr.jpg"><img src="/imgs/findstr.jpg" alt="xiaoguo" class="ui centered image"></a></p>
+<ul class="ui list">
+<li><p>&#x7A0B;&#x5E8F;&#x5B8C;&#x6210;&#x4E8E;2016.4.15</p>
 </li>
-<li><p>博客更新于2016.4.15</p>
+<li><p>&#x535A;&#x5BA2;&#x66F4;&#x65B0;&#x4E8E;2016.4.15</p>
 </li>
 </ul>
-</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="https://maxuewei2.github.io/2016/04/15/findstr/" data-id="civ4y2jw0000fzobcn8lc7ymm" class="article-share-link">分享到</a><div class="tags"><a href="/tags/算法/">算法</a><a href="/tags/小工具/">小工具</a><a href="/tags/数据结构/">数据结构</a></div><div class="post-nav"><a href="/2016/04/29/读文件错误/" class="pre">读文件错误</a><a href="/2016/04/12/FlappyBird/" class="next">Flappy Bird (Java实现)</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="https://maxuewei2.github.io"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/小工具/" style="font-size: 15px;">小工具</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/小游戏/" style="font-size: 15px;">小游戏</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/网络编程/" style="font-size: 15px;">网络编程</a> <a href="/tags/GUI/" style="font-size: 15px;">GUI</a> <a href="/tags/记录/" style="font-size: 15px;">记录</a> <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/Win32/" style="font-size: 15px;">Win32</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/网络/" style="font-size: 15px;">网络</a> <a href="/tags/图形库/" style="font-size: 15px;">图形库</a> <a href="/tags/编译/" style="font-size: 15px;">编译</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/28/FirstPost/">开始使用GitHub Pages</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/22/近期学到的/">近期学到的</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/12/重定向/">重定向</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/11/CCF记录/">CCF考试</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/13/简单的词法分析和语法分析/">简单的词法分析和语法分析（C++实现，CodeBlocks+GCC编译）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/03/ChatRoom/">聊天室（Java实现）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/08/俄罗斯C++/">俄罗斯方块（Win32实现，Codeblocks+GCC编译）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/08/迷宫/">Java迷宫游戏</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/读文件错误/">读文件错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/findstr/">在文件夹中 的指定类型文件中 查找字符串（CodeBlocks+GCC编译，控制台程序，仅能在Windows上运行）</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">maxuewei2.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/search.js?v=0.0.0"></script><script>var search_path = 'search.xml';
-if (search_path.length == 0) {
-   search_path = 'search.xml';
-}
-var path = '/' + search_path;
-searchFunc(path, 'local-search-input', 'local-search-result');
-</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-04-14T16:00:00.000Z" itemprop="datePublished">2016-04-15</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/算法/">算法</a>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/小工具/">小工具</a>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/数据结构/">数据结构</a>
+    </span>
+
+    
+
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2016/04/29/读文件错误/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    读文件错误
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2016/04/12/FlappyBird/" class="ui tiny button">
+                    
+                    Flappy Bird (Java实现)
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#说明："><span>说明：</span></a></li><li><a href="#代码："><span>代码：</span></a></li><li><a href="#运行效果："><span>运行效果：</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2016 <a href="/">maxuewei2</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>
