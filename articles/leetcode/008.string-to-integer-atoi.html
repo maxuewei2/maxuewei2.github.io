@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>about</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>008.string-to-integer-atoi</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -1083,7 +1083,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
   font-size: 13px;
   line-height: 1.42857143;
   color: #000;
@@ -5974,7 +5974,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6092,7 +6092,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -10372,7 +10372,7 @@ h6:hover .anchor-link {
 .cm-header-5,
 .cm-header-6 {
   font-weight: bold;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
 }
 .cm-header-1 {
   font-size: 185.7%;
@@ -11775,48 +11775,85 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="index.html">Back to index</a></p>
+<h1 id="8.-string-to-integer-atoi">8. string-to-integer-atoi<a class="anchor-link" href="#8.-string-to-integer-atoi">&#182;</a></h1><blockquote><p>Level: Medium<br>
+Acceptance: 14.05%<br>
+Language: c++</p>
+</blockquote>
+<p>Implement atoi to convert a string to an integer.</p>
+<p>Hint: Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases.</p>
+<p>Notes: It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front.</p>
+<p>&nbsp;</p>
+<p>Requirements for atoi:</p>
+<p>The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.</p>
+<p>The string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function.</p>
+<p>If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.</p>
+<p>If no valid conversion could be performed, a zero value is returned. If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="About">About<a class="anchor-link" href="#About">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>Email:<ul>
-<li><a href="mailto:maxuewei1995@126.com">maxuewei1995@126.com</a></li>
-</ul>
-</li>
-<li>Github:<ul>
-<li><a href="https://github.com/maxuewei2">@maxuewei2</a></li>
-</ul>
-</li>
-<li>博客园:<ul>
-<li><a href="https://cnblogs.com/maxuewei2">@maxuewei2</a></li>
-</ul>
-</li>
-<li>知乎:<ul>
-<li><a href="https://www.zhihu.com/people/maxuewei2">@maxuewei2</a></li>
-</ul>
-</li>
-<li>微博:<ul>
-<li><a href="http://weibo.com/maxuewei2">@maxuewei2</a></li>
-</ul>
-</li>
-</ul>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="n">public</span><span class="p">:</span>
+    <span class="nb">int</span> <span class="n">atoi_non</span><span class="p">(</span><span class="n">string</span> <span class="n">sub</span><span class="p">){</span>
+        <span class="nb">int</span> <span class="nb">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">unsigned</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">sub</span><span class="o">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">sub</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="s1">&#39;0&#39;</span><span class="o">||</span><span class="n">sub</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="s1">&#39;9&#39;</span><span class="p">)</span><span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+            <span class="o">//</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">INT_MAX</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">INT_MAX</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">&lt;</span><span class="nb">sum</span><span class="p">){</span><span class="nb">sum</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span><span class="k">break</span><span class="p">;}</span>
+            <span class="nb">sum</span><span class="o">=</span><span class="nb">sum</span><span class="o">*</span><span class="mi">10</span><span class="p">;</span>
+            <span class="nb">int</span> <span class="n">ad</span><span class="o">=</span><span class="n">sub</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="s1">&#39;0&#39;</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">INT_MAX</span><span class="o">-</span><span class="n">ad</span><span class="p">)</span><span class="o">&lt;</span><span class="nb">sum</span><span class="p">){</span><span class="nb">sum</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span><span class="k">break</span><span class="p">;}</span>
+            <span class="nb">sum</span><span class="o">+=</span><span class="n">ad</span><span class="p">;</span>
+            <span class="o">//</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="nb">sum</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="o">&gt;=</span><span class="mi">0</span><span class="err">?</span><span class="nb">sum</span><span class="p">:</span><span class="o">-</span><span class="mi">2147483648</span><span class="p">;</span>    
+    <span class="p">}</span>
+    <span class="nb">int</span> <span class="n">myAtoi</span><span class="p">(</span><span class="n">string</span> <span class="nb">str</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">int</span> <span class="n">A_ERROR_CODE</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+            <span class="k">return</span> <span class="n">A_ERROR_CODE</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nb">int</span> <span class="n">spos</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">epos</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">size</span><span class="p">();</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">unsigned</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="nb">str</span><span class="o">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="nb">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39; &#39;</span><span class="p">){</span>
+                <span class="n">spos</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">unsigned</span> <span class="n">i</span><span class="o">=</span><span class="n">spos</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="nb">str</span><span class="o">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="nb">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="s1">&#39;0&#39;</span><span class="o">||</span><span class="nb">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="s1">&#39;9&#39;</span><span class="p">){</span>
+                <span class="k">if</span><span class="p">(</span><span class="nb">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;-&#39;</span><span class="o">&amp;&amp;</span><span class="nb">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;+&#39;</span><span class="p">){</span>
+                    <span class="n">epos</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        
+        <span class="nb">str</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">substr</span><span class="p">(</span><span class="n">spos</span><span class="p">,</span><span class="n">epos</span><span class="o">-</span><span class="n">spos</span><span class="p">);</span>
+        <span class="o">//</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="nb">str</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+        <span class="n">string</span> <span class="n">sub</span><span class="o">=</span><span class="nb">str</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="nb">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;-&#39;</span><span class="o">||</span><span class="nb">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;+&#39;</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="k">return</span> <span class="n">A_ERROR_CODE</span><span class="p">;</span>
+            <span class="n">sub</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">substr</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">str</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nb">int</span> <span class="n">at</span><span class="o">=</span><span class="n">atoi_non</span><span class="p">(</span><span class="n">sub</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">at</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span><span class="k">return</span> <span class="n">A_ERROR_CODE</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">at</span><span class="o">==-</span><span class="mi">2147483648</span><span class="p">){</span><span class="n">at</span><span class="o">=</span><span class="nb">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;-&#39;</span><span class="err">?</span><span class="o">-</span><span class="n">at</span><span class="p">:</span><span class="n">at</span><span class="o">-</span><span class="mi">1</span><span class="p">;}</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;-&#39;</span><span class="err">?</span><span class="o">-</span><span class="n">at</span><span class="p">:</span><span class="n">at</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
     </div>
   </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>about</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>004.median-of-two-sorted-arrays</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -1083,7 +1083,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
   font-size: 13px;
   line-height: 1.42857143;
   color: #000;
@@ -5974,7 +5974,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6092,7 +6092,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -10372,7 +10372,7 @@ h6:hover .anchor-link {
 .cm-header-5,
 .cm-header-6 {
   font-weight: bold;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
 }
 .cm-header-1 {
   font-size: 185.7%;
@@ -11775,48 +11775,72 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="index.html">Back to index</a></p>
+<h1 id="4.-median-of-two-sorted-arrays">4. median-of-two-sorted-arrays<a class="anchor-link" href="#4.-median-of-two-sorted-arrays">&#182;</a></h1><blockquote><p>Level: Hard<br>
+Acceptance: 22.99%<br>
+Language: python</p>
+</blockquote>
+<p>There are two sorted arrays nums1 and nums2 of size m and n respectively.</p>
+<p>Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).</p>
+<p>Example 1:</p>
+<p>nums1 = [1, 3]
+nums2 = [2]</p>
+<p>The median is 2.0</p>
+<p>Example 2:</p>
+<p>nums1 = [1, 2]
+nums2 = [3, 4]</p>
+<p>The median is (2 + 3)/2 = 2.5</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="About">About<a class="anchor-link" href="#About">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>Email:<ul>
-<li><a href="mailto:maxuewei1995@126.com">maxuewei1995@126.com</a></li>
-</ul>
-</li>
-<li>Github:<ul>
-<li><a href="https://github.com/maxuewei2">@maxuewei2</a></li>
-</ul>
-</li>
-<li>博客园:<ul>
-<li><a href="https://cnblogs.com/maxuewei2">@maxuewei2</a></li>
-</ul>
-</li>
-<li>知乎:<ul>
-<li><a href="https://www.zhihu.com/people/maxuewei2">@maxuewei2</a></li>
-</ul>
-</li>
-<li>微博:<ul>
-<li><a href="http://weibo.com/maxuewei2">@maxuewei2</a></li>
-</ul>
-</li>
-</ul>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">findMedianSortedArrays</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums1</span><span class="p">,</span> <span class="n">nums2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :type nums1: List[int]</span>
+<span class="sd">        :type nums2: List[int]</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">nums1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">nums2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">num</span><span class="o">=</span><span class="nb">int</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">nums1</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">nums2</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">index1</span><span class="o">=</span><span class="n">index2</span><span class="o">=</span><span class="mi">0</span>
+        <span class="n">cc</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums1</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">nums2</span><span class="p">))</span>
+        <span class="n">c</span><span class="o">=</span><span class="mi">0</span>
+        <span class="k">while</span> <span class="n">index1</span><span class="o">&lt;</span><span class="nb">len</span><span class="p">(</span><span class="n">nums1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">index2</span><span class="o">&lt;</span><span class="nb">len</span><span class="p">(</span><span class="n">nums2</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">nums1</span><span class="p">[</span><span class="n">index1</span><span class="p">]</span><span class="o">&lt;</span><span class="n">nums2</span><span class="p">[</span><span class="n">index2</span><span class="p">]:</span>
+                <span class="n">cc</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">=</span><span class="n">nums1</span><span class="p">[</span><span class="n">index1</span><span class="p">]</span>
+                <span class="n">index1</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">cc</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">=</span><span class="n">nums2</span><span class="p">[</span><span class="n">index2</span><span class="p">]</span>
+                <span class="n">index2</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="n">c</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="n">index1</span><span class="o">&gt;=</span><span class="nb">len</span><span class="p">(</span><span class="n">nums1</span><span class="p">):</span>
+            <span class="k">while</span> <span class="n">index2</span><span class="o">&lt;</span><span class="nb">len</span><span class="p">(</span><span class="n">nums2</span><span class="p">):</span>
+                <span class="n">cc</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">=</span><span class="n">nums2</span><span class="p">[</span><span class="n">index2</span><span class="p">]</span>
+                <span class="n">index2</span><span class="o">+=</span><span class="mi">1</span>
+                <span class="n">c</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="n">index2</span><span class="o">&gt;=</span><span class="nb">len</span><span class="p">(</span><span class="n">nums2</span><span class="p">):</span>
+            <span class="k">while</span> <span class="n">index1</span><span class="o">&lt;</span><span class="nb">len</span><span class="p">(</span><span class="n">nums1</span><span class="p">):</span>
+                <span class="n">cc</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">=</span><span class="n">nums1</span><span class="p">[</span><span class="n">index1</span><span class="p">]</span>
+                <span class="n">index1</span><span class="o">+=</span><span class="mi">1</span>
+                <span class="n">c</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">cc</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums1</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">nums2</span><span class="p">))</span><span class="o">%</span><span class="k">2</span>==0:
+            <span class="k">return</span> <span class="p">(</span><span class="n">cc</span><span class="p">[</span><span class="n">num</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">cc</span><span class="p">[</span><span class="n">num</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="mf">2.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">cc</span><span class="p">[</span><span class="n">num</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
     </div>
   </div>

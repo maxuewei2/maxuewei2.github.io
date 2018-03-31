@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>about</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>001.two-sum</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -1083,7 +1083,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
   font-size: 13px;
   line-height: 1.42857143;
   color: #000;
@@ -5974,7 +5974,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6092,7 +6092,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -10372,7 +10372,7 @@ h6:hover .anchor-link {
 .cm-header-5,
 .cm-header-6 {
   font-weight: bold;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
 }
 .cm-header-1 {
   font-size: 185.7%;
@@ -11775,48 +11775,44 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="index.html">Back to index</a></p>
+<h1 id="1.-two-sum">1. two-sum<a class="anchor-link" href="#1.-two-sum">&#182;</a></h1><blockquote><p>Level: Easy<br>
+Acceptance: 37.88%<br>
+Language: c</p>
+</blockquote>
+<p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
+<p>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
+<p>Example:</p>
+<p>Given nums = [2, 7, 11, 15], target = 9,</p>
+<p>Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="About">About<a class="anchor-link" href="#About">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>Email:<ul>
-<li><a href="mailto:maxuewei1995@126.com">maxuewei1995@126.com</a></li>
-</ul>
-</li>
-<li>Github:<ul>
-<li><a href="https://github.com/maxuewei2">@maxuewei2</a></li>
-</ul>
-</li>
-<li>博客园:<ul>
-<li><a href="https://cnblogs.com/maxuewei2">@maxuewei2</a></li>
-</ul>
-</li>
-<li>知乎:<ul>
-<li><a href="https://www.zhihu.com/people/maxuewei2">@maxuewei2</a></li>
-</ul>
-</li>
-<li>微博:<ul>
-<li><a href="http://weibo.com/maxuewei2">@maxuewei2</a></li>
-</ul>
-</li>
-</ul>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">/**</span>
+ <span class="o">*</span> <span class="n">Note</span><span class="p">:</span> <span class="n">The</span> <span class="n">returned</span> <span class="n">array</span> <span class="n">must</span> <span class="n">be</span> <span class="n">malloced</span><span class="p">,</span> <span class="n">assume</span> <span class="n">caller</span> <span class="n">calls</span> <span class="n">free</span><span class="p">()</span><span class="o">.</span>
+ <span class="o">*/</span>
+<span class="nb">int</span><span class="o">*</span> <span class="n">twoSum</span><span class="p">(</span><span class="nb">int</span><span class="o">*</span> <span class="n">nums</span><span class="p">,</span> <span class="nb">int</span> <span class="n">numsSize</span><span class="p">,</span> <span class="nb">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">int</span><span class="o">*</span> <span class="n">r</span><span class="o">=</span><span class="p">(</span><span class="nb">int</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">sizeof</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">numsSize</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">numsSize</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="n">j</span><span class="p">)</span><span class="k">continue</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="n">target</span><span class="p">){</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="p">;</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">j</span><span class="p">;</span><span class="k">return</span> <span class="n">r</span><span class="p">;}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
     </div>
   </div>
