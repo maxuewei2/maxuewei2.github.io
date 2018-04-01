@@ -11801,6 +11801,16 @@ Language: python</p>
 <span class="sd">        :type x: int</span>
 <span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        以下方法可能会出错，</span>
+<span class="sd">        因为如果x没有overflow但是翻转过来的数字y发生了overflow，</span>
+<span class="sd">        那么即便x是回文数，</span>
+<span class="sd">        该函数也会返回False。</span>
+<span class="sd">        此处能通过，是</span>
+<span class="sd">        因为Python下整数不会overflow。</span>
+<span class="sd">        正确方法是翻转数字的一半，如12321中将21翻转为12再和前面的12比较。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
         <span class="k">if</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
         <span class="n">t</span><span class="o">=</span><span class="n">x</span>

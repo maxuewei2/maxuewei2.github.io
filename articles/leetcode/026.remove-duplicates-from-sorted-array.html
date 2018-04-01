@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>065.valid-number</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>026.remove-duplicates-from-sorted-array</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11775,20 +11775,16 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="65.-valid-number">65. valid-number<a class="anchor-link" href="#65.-valid-number">&#182;</a></h1><blockquote><p>Level: Hard<br>
-Acceptance: 12.94%<br>
+<h1 id="26.-remove-duplicates-from-sorted-array">26. remove-duplicates-from-sorted-array<a class="anchor-link" href="#26.-remove-duplicates-from-sorted-array">&#182;</a></h1><blockquote><p>Level: Easy<br>
+Acceptance: 36.30%<br>
 Language: python</p>
 </blockquote>
-<p>Validate if a given string is numeric.</p>
-<p>Some examples:
-"0" =&gt; true
-"   0.1  " =&gt; true
-"abc" =&gt; false
-"1 a" =&gt; false
-"2e10" =&gt; true</p>
-<p>Note: It is intended for the problem statement to be ambiguous. You should gather all requirements up front before implementing one.</p>
-<p>Update (2015-02-10):
-The signature of the C++ function had been updated. If you still see your function signature accepts a const char * argument, please click the reload button  to reset your code definition.</p>
+<p>Given a sorted array, remove the duplicates in-place such that each element appear only once and return the new length.</p>
+<p>Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.</p>
+<p>Example:</p>
+<p>Given nums = [1,1,2],</p>
+<p>Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively.
+It doesn't matter what you leave beyond the new length.</p>
 
 </div>
 </div>
@@ -11798,58 +11794,33 @@ The signature of the C++ function had been updated. If you still see your functi
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">isNum_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">s</span><span class="p">):</span>
-        <span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
-        <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">False</span>
-            <span class="c1">#if s.find(&#39;.&#39;)==0 or s.find(&#39;.&#39;)==len(s)-1:</span>
-             <span class="c1">#   return False</span>
-        <span class="k">elif</span> <span class="n">s</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">return</span> <span class="kc">True</span>
-
-    <span class="k">def</span> <span class="nf">isNum_neg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">l</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">nindex</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">nindex</span> <span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">False</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">False</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">isNum_</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">nindex</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
-        <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">isNum_</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">False</span>
-
-    <span class="k">def</span> <span class="nf">isNum_sign</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">s</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">s</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="n">l</span><span class="o">=</span><span class="s1">&#39;-&#39;</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span> <span class="k">else</span> <span class="s1">&#39;+&#39;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">isNum_neg</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">l</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">isNumber</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">removeDuplicates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        :type s: str</span>
-<span class="sd">        :rtype: bool</span>
+<span class="sd">        :type nums: List[int]</span>
+<span class="sd">        :rtype: int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">s</span><span class="o">==</span><span class="s1">&#39;&#39;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
-            <span class="n">eindex</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">eindex</span><span class="o">==</span><span class="mi">0</span> <span class="ow">or</span> <span class="n">eindex</span><span class="o">==</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">False</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isNum_sign</span><span class="p">(</span><span class="n">s</span><span class="p">[:</span><span class="n">eindex</span><span class="p">])</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">isNum_sign</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">eindex</span><span class="o">+</span><span class="mi">1</span><span class="p">:]):</span>
-                <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">eindex</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-                    <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">isNum_sign</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">False</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        i=0</span>
+<span class="sd">        while i &lt; len(nums):</span>
+<span class="sd">            j=i-1</span>
+<span class="sd">            f=1</span>
+<span class="sd">            while j&gt;=0:</span>
+<span class="sd">                if nums[j]==nums[i]:</span>
+<span class="sd">                    del nums[i]</span>
+<span class="sd">                    f=0</span>
+<span class="sd">                    break</span>
+<span class="sd">                j-=1</span>
+<span class="sd">            i+=f</span>
+<span class="sd">        return len(nums)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i</span><span class="o">&lt;</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+            <span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+            <span class="k">while</span> <span class="n">j</span><span class="o">&lt;</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="k">del</span> <span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
 </pre></div>
 
 </div>
