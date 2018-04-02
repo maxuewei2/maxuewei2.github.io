@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>326.power-of-three</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>038.count-and-say</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11775,20 +11775,29 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="326.-power-of-three">326. power-of-three<a class="anchor-link" href="#326.-power-of-three">&#182;</a></h1><blockquote><p>Level: Easy<br>
-Acceptance: 40.71%<br>
+<h1 id="38.-count-and-say">38. count-and-say<a class="anchor-link" href="#38.-count-and-say">&#182;</a></h1><blockquote><p>Level: Easy<br>
+Acceptance: 36.67%<br>
 Language: python</p>
 </blockquote>
-
-<pre><code>Given an integer, write a function to determine if it is a power of three.
-
-
-Follow up:
-Could you do it without using any loop / recursion?
-
-
-</code></pre>
-<p>Credits:Special thanks to @dietpepsi for adding this problem and creating all test cases.</p>
+<p>The count-and-say sequence is the sequence of integers with the first five terms as following:</p>
+<ol>
+<li>1</li>
+<li>11</li>
+<li>21</li>
+<li>1211</li>
+<li>111221</li>
+</ol>
+<p>1 is read off as "one 1" or 11.
+11 is read off as "two 1s" or 21.
+21 is read off as "one 2, then one 1" or 1211.</p>
+<p>Given an integer n, generate the nth term of the count-and-say sequence.</p>
+<p>Note: Each term of the sequence of integers will be represented as a string.</p>
+<p>Example 1:</p>
+<p>Input: 1
+Output: "1"</p>
+<p>Example 2:</p>
+<p>Input: 4
+Output: "1211"</p>
 
 </div>
 </div>
@@ -11799,21 +11808,29 @@ Could you do it without using any loop / recursion?
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">isPowerOfThree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">s</span><span class="p">):</span>
+        <span class="n">last</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">count</span><span class="o">=</span><span class="mi">0</span>
+        <span class="n">cs</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="n">last</span><span class="p">:</span>
+                <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">cs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">count</span><span class="p">,</span><span class="n">last</span><span class="p">))</span>
+                <span class="n">count</span><span class="o">=</span><span class="mi">1</span>
+                <span class="n">last</span><span class="o">=</span><span class="n">i</span>
+        <span class="n">cs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">count</span><span class="p">,</span><span class="n">last</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">cs</span><span class="p">])</span>
+    
+    <span class="k">def</span> <span class="nf">countAndSay</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :type n: int</span>
-<span class="sd">        :rtype: bool</span>
+<span class="sd">        :rtype: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">n</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        
-        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">n</span><span class="o">==</span><span class="mi">3</span> <span class="ow">or</span> <span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">True</span>
-            <span class="k">if</span> <span class="n">n</span><span class="o">%</span><span class="k">3</span>==0:
-                <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="o">//</span><span class="mi">3</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">False</span>
+        <span class="n">s</span><span class="o">=</span><span class="s1">&#39;1&#39;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">s</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">s</span>
 </pre></div>
 
 </div>
