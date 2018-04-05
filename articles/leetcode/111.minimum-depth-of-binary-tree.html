@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>035.search-insert-position</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>111.minimum-depth-of-binary-tree</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11775,24 +11775,12 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="35.-search-insert-position">35. search-insert-position<a class="anchor-link" href="#35.-search-insert-position">&#182;</a></h1><blockquote><p>Level: Easy<br>
-Acceptance: 40.02%<br>
-Language: c</p>
+<h1 id="111.-minimum-depth-of-binary-tree">111. minimum-depth-of-binary-tree<a class="anchor-link" href="#111.-minimum-depth-of-binary-tree">&#182;</a></h1><blockquote><p>Level: Easy<br>
+Acceptance: 33.55%<br>
+Language: python</p>
 </blockquote>
-<p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
-<p>You may assume no duplicates in the array.</p>
-<p>Example 1:</p>
-<p>Input: [1,3,5,6], 5
-Output: 2</p>
-<p>Example 2:</p>
-<p>Input: [1,3,5,6], 2
-Output: 1</p>
-<p>Example 3:</p>
-<p>Input: [1,3,5,6], 7
-Output: 4</p>
-<p>Example 1:</p>
-<p>Input: [1,3,5,6], 0
-Output: 0</p>
+<p>Given a binary tree, find its minimum depth.</p>
+<p>The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.</p>
 
 </div>
 </div>
@@ -11802,17 +11790,42 @@ Output: 0</p>
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">int</span> <span class="n">searchInsert</span><span class="p">(</span><span class="nb">int</span><span class="o">*</span> <span class="n">nums</span><span class="p">,</span> <span class="nb">int</span> <span class="n">numsSize</span><span class="p">,</span> <span class="nb">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">numsSize</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="n">target</span><span class="p">){</span>
-            <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="n">target</span><span class="p">){</span>
-            <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">numsSize</span><span class="p">;</span>
-<span class="p">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Definition for a binary tree node.</span>
+<span class="c1"># class TreeNode:</span>
+<span class="c1">#     def __init__(self, x):</span>
+<span class="c1">#         self.val = x</span>
+<span class="c1">#         self.left = None</span>
+<span class="c1">#         self.right = None</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">minDepth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :type root: TreeNode</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        另一种方法是用递归，分别处理左右子树然后归并。而不是像下面一样使用宽度遍历。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="n">s</span><span class="o">=</span><span class="p">[</span><span class="n">root</span><span class="p">,</span><span class="s1">&#39;#&#39;</span><span class="p">]</span>
+        <span class="n">d</span><span class="o">=</span><span class="mi">0</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">t</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">s</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+            <span class="k">if</span> <span class="n">t</span><span class="o">==</span><span class="s1">&#39;#&#39;</span><span class="p">:</span>
+                <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)</span>
+                <span class="n">d</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">t</span><span class="o">.</span><span class="n">left</span><span class="p">)</span><span class="ow">and</span><span class="p">(</span><span class="ow">not</span> <span class="n">t</span><span class="o">.</span><span class="n">right</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">d</span><span class="o">+</span><span class="mi">1</span>
+                <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">left</span><span class="p">:</span>
+                    <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+                    <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span>
 </pre></div>
 
 </div>

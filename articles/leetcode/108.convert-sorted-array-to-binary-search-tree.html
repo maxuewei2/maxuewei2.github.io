@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>035.search-insert-position</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>108.convert-sorted-array-to-binary-search-tree</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11775,24 +11775,22 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="35.-search-insert-position">35. search-insert-position<a class="anchor-link" href="#35.-search-insert-position">&#182;</a></h1><blockquote><p>Level: Easy<br>
-Acceptance: 40.02%<br>
-Language: c</p>
+<h1 id="108.-convert-sorted-array-to-binary-search-tree">108. convert-sorted-array-to-binary-search-tree<a class="anchor-link" href="#108.-convert-sorted-array-to-binary-search-tree">&#182;</a></h1><blockquote><p>Level: Easy<br>
+Acceptance: 44.50%<br>
+Language: python</p>
 </blockquote>
-<p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
-<p>You may assume no duplicates in the array.</p>
-<p>Example 1:</p>
-<p>Input: [1,3,5,6], 5
-Output: 2</p>
-<p>Example 2:</p>
-<p>Input: [1,3,5,6], 2
-Output: 1</p>
-<p>Example 3:</p>
-<p>Input: [1,3,5,6], 7
-Output: 4</p>
-<p>Example 1:</p>
-<p>Input: [1,3,5,6], 0
-Output: 0</p>
+<p>Given an array where elements are sorted in ascending order, convert it to a height balanced BST.</p>
+<p>For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.</p>
+<p>Example:</p>
+<p>Given the sorted array: [-10,-3,0,5,9],</p>
+<p>One possible answer is: [0,-3,9,-10,null,5], which represents the following height balanced BST:</p>
+
+<pre><code>  0
+ / \
+</code></pre>
+<p>-3   9
+   /   /
+ -10  5</p>
 
 </div>
 </div>
@@ -11802,17 +11800,25 @@ Output: 0</p>
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">int</span> <span class="n">searchInsert</span><span class="p">(</span><span class="nb">int</span><span class="o">*</span> <span class="n">nums</span><span class="p">,</span> <span class="nb">int</span> <span class="n">numsSize</span><span class="p">,</span> <span class="nb">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">numsSize</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="n">target</span><span class="p">){</span>
-            <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="n">target</span><span class="p">){</span>
-            <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">numsSize</span><span class="p">;</span>
-<span class="p">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Definition for a binary tree node.</span>
+<span class="c1"># class TreeNode:</span>
+<span class="c1">#     def __init__(self, x):</span>
+<span class="c1">#         self.val = x</span>
+<span class="c1">#         self.left = None</span>
+<span class="c1">#         self.right = None</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">sortedArrayToBST</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :type nums: List[int]</span>
+<span class="sd">        :rtype: TreeNode</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">root</span><span class="o">=</span><span class="n">TreeNode</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sortedArrayToBST</span><span class="p">(</span><span class="n">nums</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sortedArrayToBST</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="k">return</span> <span class="n">root</span>
 </pre></div>
 
 </div>
