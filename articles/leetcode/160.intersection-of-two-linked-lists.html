@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>112.path-sum</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>160.intersection-of-two-linked-lists</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11775,25 +11775,24 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="112.-path-sum">112. path-sum<a class="anchor-link" href="#112.-path-sum">&#182;</a></h1><blockquote><p>Level: Easy<br>
-Acceptance: 34.92%<br>
-Language: python</p>
+<h1 id="160.-intersection-of-two-linked-lists">160. intersection-of-two-linked-lists<a class="anchor-link" href="#160.-intersection-of-two-linked-lists">&#182;</a></h1><blockquote><p>Level: Easy<br>
+Acceptance: 30.84%<br>
+Language: c</p>
 </blockquote>
-<p>Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.</p>
-<p>For example:
-Given the below binary tree and sum = 22,</p>
-
-<pre><code>          5
-         / \
-        4   8
-       /   / \
-      11  13  4
-     /  \      \
-    7    2      1
-
-
-</code></pre>
-<p>return true, as there exist a root-to-leaf path 5-&gt;4-&gt;11-&gt;2 which sum is 22.</p>
+<p>Write a program to find the node at which the intersection of two singly linked lists begins.</p>
+<p>For example, the following two linked lists:</p>
+<p>A:          a1 → a2
+                   ↘
+                     c1 → c2 → c3
+                   ↗<br>
+B:     b1 → b2 → b3</p>
+<p>begin to intersect at node c1.</p>
+<p>Notes:</p>
+<p>If the two linked lists have no intersection at all, return null.
+The linked lists must retain their original structure after the function returns. 
+You may assume there are no cycles anywhere in the entire linked structure.
+Your code should preferably run in O(n) time and use only O(1) memory.</p>
+<p>Credits:Special thanks to @stellari for adding this problem and creating all test cases.</p>
 
 </div>
 </div>
@@ -11803,25 +11802,29 @@ Given the below binary tree and sum = 22,</p>
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Definition for a binary tree node.</span>
-<span class="c1"># class TreeNode:</span>
-<span class="c1">#     def __init__(self, x):</span>
-<span class="c1">#         self.val = x</span>
-<span class="c1">#         self.left = None</span>
-<span class="c1">#         self.right = None</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">/*</span><span class="n">巧妙</span><span class="err">！！！</span><span class="o">*/</span>
 
-<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">hasPathSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="nb">sum</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        :type root: TreeNode</span>
-<span class="sd">        :type sum: int</span>
-<span class="sd">        :rtype: bool</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="o">.</span><span class="n">left</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">root</span><span class="o">.</span><span class="n">right</span> <span class="ow">and</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="o">==</span><span class="nb">sum</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasPathSum</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">,</span><span class="nb">sum</span><span class="o">-</span><span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasPathSum</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">,</span><span class="nb">sum</span><span class="o">-</span><span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
+<span class="o">/**</span>
+ <span class="o">*</span> <span class="n">Definition</span> <span class="k">for</span> <span class="n">singly</span><span class="o">-</span><span class="n">linked</span> <span class="nb">list</span><span class="o">.</span>
+ <span class="o">*</span> <span class="n">struct</span> <span class="n">ListNode</span> <span class="p">{</span>
+ <span class="o">*</span>     <span class="nb">int</span> <span class="n">val</span><span class="p">;</span>
+ <span class="o">*</span>     <span class="n">struct</span> <span class="n">ListNode</span> <span class="o">*</span><span class="nb">next</span><span class="p">;</span>
+ <span class="o">*</span> <span class="p">};</span>
+ <span class="o">*/</span>
+<span class="n">struct</span> <span class="n">ListNode</span> <span class="o">*</span><span class="n">getIntersectionNode</span><span class="p">(</span><span class="n">struct</span> <span class="n">ListNode</span> <span class="o">*</span><span class="n">headA</span><span class="p">,</span> <span class="n">struct</span> <span class="n">ListNode</span> <span class="o">*</span><span class="n">headB</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span>headA<span class="o">||</span>!headB<span class="o">)</span><span class="k">return</span> NULL<span class="p">;</span>
+    <span class="n">struct</span> <span class="n">ListNode</span><span class="o">*</span> <span class="n">p</span><span class="o">=</span><span class="n">headA</span><span class="p">,</span><span class="o">*</span><span class="n">q</span><span class="o">=</span><span class="n">headB</span><span class="p">,</span><span class="o">*</span><span class="n">pt</span><span class="p">,</span><span class="o">*</span><span class="n">qt</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span>p<span class="o">&amp;&amp;</span>!q<span class="o">&amp;&amp;</span>pt!<span class="o">=</span>qt<span class="o">)</span><span class="k">return</span> NULL<span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span>p<span class="o">){</span><span class="nv">p</span><span class="o">=</span>headB<span class="p">;</span><span class="o">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span>q<span class="o">){</span><span class="nv">q</span><span class="o">=</span>headA<span class="p">;</span><span class="o">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="o">==</span><span class="n">q</span><span class="p">)</span><span class="k">return</span> <span class="n">p</span><span class="p">;</span>
+        <span class="n">pt</span><span class="o">=</span><span class="n">p</span><span class="p">;</span>
+        <span class="n">qt</span><span class="o">=</span><span class="n">q</span><span class="p">;</span>
+        <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="o">-&gt;</span><span class="nb">next</span><span class="p">;</span>
+        <span class="n">q</span><span class="o">=</span><span class="n">q</span><span class="o">-&gt;</span><span class="nb">next</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 
 </div>

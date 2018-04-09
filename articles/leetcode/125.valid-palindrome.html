@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>112.path-sum</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>125.valid-palindrome</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11775,25 +11775,17 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="112.-path-sum">112. path-sum<a class="anchor-link" href="#112.-path-sum">&#182;</a></h1><blockquote><p>Level: Easy<br>
-Acceptance: 34.92%<br>
-Language: python</p>
+<h1 id="125.-valid-palindrome">125. valid-palindrome<a class="anchor-link" href="#125.-valid-palindrome">&#182;</a></h1><blockquote><p>Level: Easy<br>
+Acceptance: 26.97%<br>
+Language: c</p>
 </blockquote>
-<p>Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.</p>
-<p>For example:
-Given the below binary tree and sum = 22,</p>
-
-<pre><code>          5
-         / \
-        4   8
-       /   / \
-      11  13  4
-     /  \      \
-    7    2      1
-
-
-</code></pre>
-<p>return true, as there exist a root-to-leaf path 5-&gt;4-&gt;11-&gt;2 which sum is 22.</p>
+<p>Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.</p>
+<p>For example,
+"A man, a plan, a canal: Panama" is a palindrome.
+"race a car" is not a palindrome.</p>
+<p>Note:
+Have you consider that the string might be empty? This is a good question to ask during an interview.</p>
+<p>For the purpose of this problem, we define empty string as valid palindrome.</p>
 
 </div>
 </div>
@@ -11803,25 +11795,31 @@ Given the below binary tree and sum = 22,</p>
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Definition for a binary tree node.</span>
-<span class="c1"># class TreeNode:</span>
-<span class="c1">#     def __init__(self, x):</span>
-<span class="c1">#         self.val = x</span>
-<span class="c1">#         self.left = None</span>
-<span class="c1">#         self.right = None</span>
-
-<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">hasPathSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="nb">sum</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        :type root: TreeNode</span>
-<span class="sd">        :type sum: int</span>
-<span class="sd">        :rtype: bool</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="o">.</span><span class="n">left</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">root</span><span class="o">.</span><span class="n">right</span> <span class="ow">and</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="o">==</span><span class="nb">sum</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasPathSum</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">,</span><span class="nb">sum</span><span class="o">-</span><span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasPathSum</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">,</span><span class="nb">sum</span><span class="o">-</span><span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">bool</span> <span class="n">is_cha</span><span class="p">(</span><span class="n">char</span> <span class="o">*</span><span class="n">c</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">c</span><span class="o">&lt;=</span><span class="s1">&#39;Z&#39;</span><span class="o">&amp;&amp;*</span><span class="n">c</span><span class="o">&gt;=</span><span class="s1">&#39;A&#39;</span><span class="p">){</span>
+        <span class="o">*</span><span class="n">c</span><span class="o">=*</span><span class="n">c</span><span class="o">-</span><span class="s1">&#39;A&#39;</span><span class="o">+</span><span class="s1">&#39;a&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">c</span><span class="o">&lt;=</span><span class="s1">&#39;z&#39;</span><span class="o">&amp;&amp;*</span><span class="n">c</span><span class="o">&gt;=</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="k">return</span> <span class="n">true</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">c</span><span class="o">&lt;=</span><span class="s1">&#39;9&#39;</span><span class="o">&amp;&amp;*</span><span class="n">c</span><span class="o">&gt;=</span><span class="s1">&#39;0&#39;</span><span class="p">)</span><span class="k">return</span> <span class="n">true</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">false</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nb">bool</span> <span class="n">isPalindrome</span><span class="p">(</span><span class="n">char</span><span class="o">*</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">int</span> <span class="n">p</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">q</span><span class="o">=</span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">p</span><span class="o">&lt;</span><span class="n">q</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">is_cha</span><span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="n">p</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">is_cha</span><span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="n">q</span><span class="p">))){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">!=</span><span class="n">s</span><span class="p">[</span><span class="n">q</span><span class="p">])</span><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="n">p</span><span class="o">++</span><span class="p">;</span><span class="n">q</span><span class="o">--</span><span class="p">;</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!(</span>is_cha<span class="o">(</span>s+p<span class="o">))){</span>
+            <span class="n">p</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!(</span>is_cha<span class="o">(</span>s+q<span class="o">))){</span>
+            <span class="n">q</span><span class="o">--</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">true</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 
 </div>
