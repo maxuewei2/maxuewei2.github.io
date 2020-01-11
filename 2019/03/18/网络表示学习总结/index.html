@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>网络表示学习总结 | maxuewei2 的博客</title><link rel="stylesheet" type="text/css" href="../../../../css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="../../../../favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="../../../../favicon.ico"><link rel="apple-touch-icon" href="../../../../apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="../../../../apple-touch-icon.png"><meta name="generator" content="Hexo 4.2.0"></head><body> <a class="parentdir" id="parentdir" href="..">Parent Directory</a><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">网络表示学习总结</h1><a id="logo" href="../../../../.">maxuewei2 的博客</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="../../../../."><i class="fa fa-home"> 首页</i></a><a href="../../../../archives/"><i class="fa fa-archive"> 归档</i></a><a href="../../../../about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">网络表示学习总结</h1><div class="post-meta">Mar 18, 2019<span> | </span><span class="category"><a href="../../../../categories/%E8%AE%B0%E5%BD%95/">记录</a><a href="../../../../categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E6%9C%AF/">学术</a></span></div><a class="disqus-comment-count" data-disqus-identifier="2019/03/18/网络表示学习总结/" href="#disqus_thread"></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div></div></div><div class="post-content"><p>总结一下网络表示学习 (network embedding/network representation learning) 的东西。</p>
+<p>网络表示学习即是将节点表示为向量。<br>为什么表示为向量，目前看来有以下几点原因：</p>
+<ol>
+<li>向量是一种分布式表示，比 one-hot 表示什么的更易于使用，如可以方便地作为 feature 喂给 classifier 等。而这其实也是因为分布式表示含有很多隐含信息，不像 one-hot 向量，丁是丁卯是卯。同时，分布式表示可以比 one-hot 表示短得多。</li>
+<li>网络 (graph) 是一种不够结构化的数据结构。想要在网络中获取有用的信息，哪怕只关注一个节点，也必然要关注网络中与之相关的一群节点，算法复杂度指数上升，解决问题的复杂性也是指数上升。这种级联的问题使得在网络上的研究很麻烦，千头万绪。而把每个节点表示为一个独立的向量就很方便了。</li>
+<li>网络不规则。网络中的节点有的度很大，有的度很小，每个节点的邻居个数不一样，在网络上直接处理会很麻烦。转化为向量后，向量长度都一样，就规则了。</li>
+<li>网络很大时处理起来时间和空间复杂度都太高，邻接矩阵和 laplacian 矩阵都是 $N^2$ 大小，而处理成 embedding 向量后，长度就很短了，给下游任务使用时复杂度就小得多。</li>
+</ol>
+<p>接下来的问题是怎么将节点表示成向量。<br>这里首先要确定的是要从哪个角度来确定节点间的相似性。目前我接触到的主要是以下两个角度：</p>
+<ol>
+<li>Homogeneity/proximity，这个主要是社区 (community) 角度，即相邻的节点更可能在社区属性上相似。在某篇论文上看到一个解释说，从这个角度看，网络是平滑的，感觉很形象很直觉。</li>
+<li>Structural similarity，这个主要是结构或功能角度，即周围结构相似的节点更可能在功能上相似。<br>当然，社区很多时候也会和功能相关，功能相似的节点也很可能相邻，所以这两个角度会有一些相似或重叠的地方。<br>但如果两个结构相似的节点相距很远时，这两个角度就几乎是正交的了。</li>
+</ol>
+<p>首先说第一个角度，第一个角度的基本假设是『相邻节点相似』，这可以称为是 first-order proximity。而另一方面，基于这个假设，与同一个节点相似的节点之间也更可能相似，那么两个节点之间共同邻居越多，它们也就更可能相似，这可以称为 second-order proximity，这时，两个节点之间相距为 2。当然，距离再远些还可以有 high-order proximity。</p>
+<p>那么如何捕捉 (capture) 这些 proximity 呢？<br>最早 DeepWalk 是以节点作为单词，以随机游走序列作为句子，得到句子序列之后喂给 word2vec 从而得到节点 embedding。word2vec 会将窗口内的节点作为上下文，所以 DeepWalk 捕捉的是 $k$ (window size) 阶proximity？<br>之后出现了 LINE，LINE 一方面针对大型网络进行了优化，另一方面，给出了 objective function，这就使得对于网络表示学习的改进更加容易。因为要在基于 random walk 的方法上继续改进，一般只能在网络结构 (如 HARP？) 或 random walk 的生成模式 (如 node2vec) 上做手脚，这样改进或扩展起来就很不方便。而在 LINE 给出了 objective function 后，只要针对自己预想的改进，调整目标函数就好了。因此，后面看到的很多网络表示学习的论文都是基于 LINE 做的改进，如加入社区结构、加入影响力模型等等。<br>之后，又出现了基于矩阵分解的网络表示学习方法，如 GraRep，但这类方法速度比较慢。<br>除此之外，还有基于深度学习的方法，如 SDNE，本质上可以看作使用自编码器对邻接矩阵降维？</p>
+<p>本质上，这些方法都可以看作用向量表示来模拟网络中的概率分布，不同的是这个概率分布是从哪个角度计算的，以及是怎么计算的。如 LINE 中定义的网络中的概率分布就比较简单直接，基本是边权重除以中心节点的度，然后以 sigmoid 或 softmax 来用向量表示表达这个概率，接下来就是用 KL-divergence 来最小化两个分布的距离就可以了。对于基于 random walk 的方法，这个网络中的概率分布就隐含在 random walk 中而没有明确定义。<br>对于 DeepWalk 来说，random walk 相当于NLP里的句子，而在 NLP 中，word2vec 所做的事情相当于通过向量表示使句子生成的概率最大化，那么在 DeepWalk 中，节点相当于 vocabulary，DeepWalk 的目的就是用节点向量使 random walk 生成的概率最大化。<br>就好象给定 N 个节点，用这 N 个节点可以生成有不同连接方式的网络，假设这些不同的网络构成一个集合(空间？) S，那么我们见到的那个网络 G 只是这个集合中的一个元素。用不同的向量表示这些节点，生成这些网络的概率也会不同，我们要做的是调整这些向量，使生成给定网络 G 的概率最大。那么此时问题在于如何表示『向量生成某个网络 G 的概率』。DeepWalk 首先将网络转化为 random walk 序列，可以理解为在给出足够多 random walk 序列时，这些序列在集合 S 中对应 G 的概率最大，从而我们可以用 random walk 序列近似表示网络 G，接下来只要向量表示生成这些 random walk 序列的概率越大，就可以理解为生成网络 G 的概率越大。然后我们再将 random walk 生成的概率近似用上下文生成中心词(或反过来)的概率表示，就可以用 word2vec 的 CBOW 或 skipgram 学习了。这里 S，G 有点像监督学习里的 hypothesis set 和 ideal target function。</p>
+<hr>
+<p>另，考虑另一个问题：给定一个 $N \times N$ 的矩阵 $A$，矩阵里每个元素 $A_{ij}$ 表示两个点 $i$ 和 $j$ 之间的距离，求给出每个节点的坐标，使满足该矩阵。坐标维数不做限定。<br>如果该问题里的点对应网络中的节点，矩阵中的值表示节点间的最短路径距离或转移概率，所求坐标对应向量表示，那么network embedding可以看作对这个问题的近似求解？<br>这个问题可以看作有两个步骤，一是给出矩阵 $A$，二是求节点坐标 (即embedding)。大多数network embedding方法其实可以看作是对于这两个步骤给出了不同的解决方案。即以不同方式定义节点间的相似度，给出不同的矩阵 $A$，或者以不同方式求解 embedding。</p>
+<p>TODO:<br>结构相似性角度<br>graph kernel<br>link prediction</p>
+</div><div class="tags"><a href="../../../../tags/%E5%AD%A6%E6%9C%AF/">学术</a><a href="../../../../tags/%E7%BD%91%E7%BB%9C%E8%A1%A8%E7%A4%BA/">网络表示</a><a href="../../../../tags/%E6%80%BB%E7%BB%93/">总结</a></div><div class="post-nav"><a class="pre" href="../%E5%A6%82%E4%BD%95%E5%86%99%E4%B8%80%E7%AF%87%E5%A5%BD%E8%AE%BA%E6%96%87/">如何写一篇好论文</a><a class="next" href="../../../../2018/05/01/Ubuntu-18-04-%E8%AE%B0%E5%BD%95/">Ubuntu 18.04 记录</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'http://labserver.com/files/maxuewei/blog/2019/03/18/网络表示学习总结/';
+    this.page.identifier = '2019/03/18/网络表示学习总结/';
+    this.page.title = '网络表示学习总结';
+  };</script><script type="text/javascript" id="disqus-lazy-load-script">$.ajax({
+url: 'https://disqus.com/next/config.json',
+timeout: 2500,
+type: 'GET',
+success: function(){
+  var d = document;
+  var s = d.createElement('script');
+  s.src = '//maxuewei2.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', + new Date());
+  (d.head || d.body).appendChild(s);
+  $('.disqus_click_btn').css('display', 'none');
+},
+error: function() {
+  $('.disqus_click_btn').css('display', 'block');
+}
+});</script><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//maxuewei2.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://maxuewei2.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/%E8%AE%B0%E5%BD%95/">记录</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E6%9C%AF/">学术</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/%E8%AE%B0%E5%BD%95/%E6%8A%80%E6%9C%AF/">技术</a></li></ul></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="../../../../tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="../../../../tags/%E7%BB%B4%E6%8A%A4/" style="font-size: 15px;">维护</a> <a href="../../../../tags/%E8%AE%B0%E5%BD%95/" style="font-size: 15px;">记录</a> <a href="../../../../tags/%E5%AD%A6%E6%9C%AF/" style="font-size: 15px;">学术</a> <a href="../../../../tags/%E8%AE%BA%E6%96%87/" style="font-size: 15px;">论文</a> <a href="../../../../tags/%E7%BD%91%E7%BB%9C%E8%A1%A8%E7%A4%BA/" style="font-size: 15px;">网络表示</a> <a href="../../../../tags/%E6%80%BB%E7%BB%93/" style="font-size: 15px;">总结</a> <a href="../../../../tags/Linux/" style="font-size: 15px;">Linux</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="../../../../2020/01/09/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BB%B4%E6%8A%A4%E8%AE%B0%E5%BD%95/">服务器维护记录</a></li><li class="post-list-item"><a class="post-list-link" href="../%E5%A6%82%E4%BD%95%E5%86%99%E4%B8%80%E7%AF%87%E5%A5%BD%E8%AE%BA%E6%96%87/">如何写一篇好论文</a></li><li class="post-list-item"><a class="post-list-link" href="">网络表示学习总结</a></li><li class="post-list-item"><a class="post-list-link" href="../../../../2018/05/01/Ubuntu-18-04-%E8%AE%B0%E5%BD%95/">Ubuntu 18.04 记录</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><script type="text/javascript" src="//maxuewei2.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://www.cnblogs.com/maxuewei2/" title="博客园-maxuewei2" target="_blank">博客园-maxuewei2</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="../../../../." rel="nofollow">maxuewei2 的博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="../../../../js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="../../../../js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML" async></script><script type="text/javascript" src="../../../../js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="../../../../js/smartresize.js?v=0.0.0"></script></body></html>

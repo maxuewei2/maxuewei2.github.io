@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>Ubuntu 18.04 记录 | maxuewei2 的博客</title><link rel="stylesheet" type="text/css" href="../../../../css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="../../../../favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="../../../../favicon.ico"><link rel="apple-touch-icon" href="../../../../apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="../../../../apple-touch-icon.png"><meta name="generator" content="Hexo 4.2.0"></head><body> <a class="parentdir" id="parentdir" href="..">Parent Directory</a><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Ubuntu 18.04 记录</h1><a id="logo" href="../../../../.">maxuewei2 的博客</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="../../../../."><i class="fa fa-home"> 首页</i></a><a href="../../../../archives/"><i class="fa fa-archive"> 归档</i></a><a href="../../../../about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Ubuntu 18.04 记录</h1><div class="post-meta">May 1, 2018<span> | </span><span class="category"><a href="../../../../categories/%E8%AE%B0%E5%BD%95/">记录</a><a href="../../../../categories/%E8%AE%B0%E5%BD%95/%E6%8A%80%E6%9C%AF/">技术</a></span></div><a class="disqus-comment-count" data-disqus-identifier="2018/05/01/Ubuntu-18-04-记录/" href="#disqus_thread"></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#登录后死机，关机时死机的解决方法"><span class="toc-number">1.</span> <span class="toc-text">登录后死机，关机时死机的解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#更新内核"><span class="toc-number">1.1.</span> <span class="toc-text">更新内核</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装-Nvidia-显卡驱动"><span class="toc-number">1.2.</span> <span class="toc-text">安装 Nvidia 显卡驱动</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-CUDA，cuDNN，Tensorflow-等"><span class="toc-number">2.</span> <span class="toc-text">安装 CUDA，cuDNN，Tensorflow 等</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装-CUDA"><span class="toc-number">2.1.</span> <span class="toc-text">安装 CUDA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装-cuDNN"><span class="toc-number">2.2.</span> <span class="toc-text">安装 cuDNN</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装-Anaconda"><span class="toc-number">2.3.</span> <span class="toc-text">安装 Anaconda</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装-Tensorflow"><span class="toc-number">2.4.</span> <span class="toc-text">安装 Tensorflow</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一些可能用到的命令"><span class="toc-number">3.</span> <span class="toc-text">一些可能用到的命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一些网址"><span class="toc-number">4.</span> <span class="toc-text">一些网址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后记"><span class="toc-number">5.</span> <span class="toc-text">后记</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#END"><span class="toc-number">6.</span> <span class="toc-text">END</span></a></li></ol></div></div><div class="post-content"><p>注：本教程写于2018.5.1，现在可能过时了。</p>
+<h3 id="登录后死机，关机时死机的解决方法"><a href="#登录后死机，关机时死机的解决方法" class="headerlink" title="登录后死机，关机时死机的解决方法"></a>登录后死机，关机时死机的解决方法</h3><p>更新内核并安装 Nvidia 显卡驱动可解决。</p>
+<p>在内核更新为 4.15.18，Nvidia 显卡驱动为 390 时，问题解决。</p>
+<p>使用 LiveCD 启动，然后 mount 安装的系统的根分区，可以在文件管理器中挂载，也可以用如<code>mount /dev/sda1 rootdir</code>的命令挂载，然后 chroot 到该分区，如<code>chroot rootdir</code>。<br>然后</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">set</span>-default multi-user.target</span><br></pre></td></tr></table></figure>
+<p>使系统重启后默认进入字符界面，从而避免登录后进入图形界面时死机。</p>
+<p>重启<br>进入字符界面登录后按照以下方式更新内核并安装 Nvidia 显卡驱动。</p>
+<h4 id="更新内核"><a href="#更新内核" class="headerlink" title="更新内核"></a>更新内核</h4><p><a href="http://kernel.ubuntu.com/~kernel-ppa/mainline">内核下载地址</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">uname -sr    <span class="comment">#查看当前内核版本</span></span><br><span class="line">wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.15.18/linux-headers-4.15.18-041518_4.15.18-041518.201804190330_all.deb</span><br><span class="line">wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.15.18/linux-headers-4.15.18-041518-generic_4.15.18-041518.201804190330_amd64.deb</span><br><span class="line">wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.15.18/linux-image-4.15.18-041518-generic_4.15.18-041518.201804190330_amd64.deb</span><br><span class="line">sudo dpkg -i *.deb</span><br><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="安装-Nvidia-显卡驱动"><a href="#安装-Nvidia-显卡驱动" class="headerlink" title="安装 Nvidia 显卡驱动"></a>安装 Nvidia 显卡驱动</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:graphics-drivers/ppa</span><br><span class="line">sudo apt-cache search nvidia | less <span class="comment">#查看并寻找合适的显卡驱动版本</span></span><br><span class="line">sudo apt install nvidia-384 nvidia-prime</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">set</span>-default graphical.target</span><br><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
+<p>更改回默认图形界面登录，重启看是否解决了登录及关机时死机的问题。重启时可能需要禁用secure boot。</p>
+<hr>
+<h3 id="安装-CUDA，cuDNN，Tensorflow-等"><a href="#安装-CUDA，cuDNN，Tensorflow-等" class="headerlink" title="安装 CUDA，cuDNN，Tensorflow 等"></a>安装 CUDA，cuDNN，Tensorflow 等</h3><p>CUDA9.0 + cuDNN7.0 + tensorflow-gpu 1.8.0</p>
+<p>参考</p>
+<ul>
+<li>『<a href="https://www.zhihu.com/question/268165660/answer/376948393">如何评价 Ubuntu 18.04 LTS ？ - 张凡的回答 - 知乎</a>』及『<a href="https://blossomnoodles.github.io/cnBlogs/2018/04/30/Ubuntu18.04-Tensorlow-install.html">在Ubuntu 18.04上安装Tensorflow</a>』</li>
+<li>『Installation Guide 文档』</li>
+</ul>
+<h4 id="安装-CUDA"><a href="#安装-CUDA" class="headerlink" title="安装 CUDA"></a>安装 CUDA</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">set</span>-default multi-user.target <span class="comment">#安装 CUDA 时必须确保没有 Nouveau 驱动或 Nvidia 驱动运行，故需停用图形界面。</span></span><br><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
+
+
+<p>降低 gcc,g++ 版本为 gcc-5,g++-5</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install gcc-5 g++-5</span><br><span class="line">sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 50</span><br><span class="line">gcc --version</span><br><span class="line">sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 50</span><br><span class="line">g++ --version</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./cuda_9.0.176_384.81_linux.run</span><br><span class="line">sudo ./cuda_9.0.176.1_linux.run </span><br><span class="line">sudo ./cuda_9.0.176.2_linux.run</span><br></pre></td></tr></table></figure>
+<p>安装时会询问安装选项。因为我是双显卡，所以不安装 OpenGL，显卡驱动已安装过，也不再安装。</p>
+<p>安装完成后，记得添加到 PATH。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install freeglut3-dev build-essential libx11-dev libxmu-dev libxi-dev libgl1-mesa-glx libglu1-mesa libglu1-mesa-dev</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="安装-cuDNN"><a href="#安装-cuDNN" class="headerlink" title="安装 cuDNN"></a>安装 cuDNN</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo cp cuda/include/cudnn.h /usr/<span class="built_in">local</span>/cuda/include</span><br><span class="line">sudo cp cuda/lib64/libcudnn* /usr/<span class="built_in">local</span>/cuda/lib64</span><br><span class="line">sudo chmod a+r /usr/<span class="built_in">local</span>/cuda/include/cudnn.h</span><br><span class="line">sudo chmod a+r /usr/<span class="built_in">local</span>/cuda/lib64/libcudnn*</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libfreeimage3 libfreeimage-dev</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="安装-Anaconda"><a href="#安装-Anaconda" class="headerlink" title="安装 Anaconda"></a>安装 Anaconda</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x Anaconda3-5.1.0-Linux-x86_64.sh </span><br><span class="line">./Anaconda3-5.1.0-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="安装-Tensorflow"><a href="#安装-Tensorflow" class="headerlink" title="安装 Tensorflow"></a>安装 Tensorflow</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install tensorflow-gpu</span><br></pre></td></tr></table></figure>
+
+
+
+
+<hr>
+<h3 id="一些可能用到的命令"><a href="#一些可能用到的命令" class="headerlink" title="一些可能用到的命令"></a>一些可能用到的命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi</span><br><span class="line">lsmod | grep nouveau</span><br><span class="line">sudo restore -i -f homexuewei.bak .</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="一些网址"><a href="#一些网址" class="headerlink" title="一些网址"></a>一些网址</h3><p><a href="https://developer.nvidia.com/cuda-90-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1704&target_type=runfilelocal">CUDA下载地址</a><br><a href="http://developer.download.nvidia.com/compute/cuda/9.0/Prod/docs/sidebar/CUDA_Installation_Guide_Linux.pdf">CUDA Installation Guide</a><br><a href="https://developer.nvidia.com/rdp/cudnn-archivehttps://developer.nvidia.com/rdp/cudnn-archive">cuDNN 下载地址</a><br><a href="http://developer.download.nvidia.com/compute/machine-learning/cudnn/secure/v7.0.5/prod/Doc/cuDNN-Installation-Guide.pdf?fg3fwEJwNToaSZSOMcVUcMuWLwD3FxjkHeZDgs5JYmYKJW7yR5_0sXSvjKa1-i8344TeND---JCIjoX6eIRKMH5GVJabuP7aZuxoEEnvbBDQ9djkZAd340-ak7iY-sp-xPFx6UGPFHfRwW01O_dao6EFurZDeNBcCYYP7GRUWzlpswn4zjr3M1I0qaYqz7cbvQ">cuDNN Installation Guide</a><br><a href="https://www.tensorflow.org/install/install_linux">tensorflow</a></p>
+<hr>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><ul>
+<li><p>感觉 Gnome 桌面不够快，有时还会卡，不知道什么原因。总之又安装了熟悉的 Xfce，虽然丑一点，不过流畅多了。</p>
+</li>
+<li><p>Ubuntu 18.04 在使用Java的SSL时可能会出现异常，导致登录失败、连接失败等。<br>解决方法见<a href="https://stackoverflow.com/questions/6784463/error-trustanchors-parameter-must-be-non-empty">Error - trustAnchors parameter must be non-empty</a></p>
+</li>
+</ul>
+<h3 id="END"><a href="#END" class="headerlink" title="END"></a>END</h3><p>2018.5.1</p>
+</div><div class="tags"><a href="../../../../tags/%E8%AE%B0%E5%BD%95/">记录</a><a href="../../../../tags/Linux/">Linux</a></div><div class="post-nav"><a class="pre" href="../../../../2019/03/18/%E7%BD%91%E7%BB%9C%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">网络表示学习总结</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'http://labserver.com/files/maxuewei/blog/2018/05/01/Ubuntu-18-04-记录/';
+    this.page.identifier = '2018/05/01/Ubuntu-18-04-记录/';
+    this.page.title = 'Ubuntu 18.04 记录';
+  };</script><script type="text/javascript" id="disqus-lazy-load-script">$.ajax({
+url: 'https://disqus.com/next/config.json',
+timeout: 2500,
+type: 'GET',
+success: function(){
+  var d = document;
+  var s = d.createElement('script');
+  s.src = '//maxuewei2.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', + new Date());
+  (d.head || d.body).appendChild(s);
+  $('.disqus_click_btn').css('display', 'none');
+},
+error: function() {
+  $('.disqus_click_btn').css('display', 'block');
+}
+});</script><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//maxuewei2.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://maxuewei2.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/%E8%AE%B0%E5%BD%95/">记录</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E6%9C%AF/">学术</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/%E8%AE%B0%E5%BD%95/%E6%8A%80%E6%9C%AF/">技术</a></li></ul></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="../../../../tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="../../../../tags/%E7%BB%B4%E6%8A%A4/" style="font-size: 15px;">维护</a> <a href="../../../../tags/%E8%AE%B0%E5%BD%95/" style="font-size: 15px;">记录</a> <a href="../../../../tags/%E5%AD%A6%E6%9C%AF/" style="font-size: 15px;">学术</a> <a href="../../../../tags/%E8%AE%BA%E6%96%87/" style="font-size: 15px;">论文</a> <a href="../../../../tags/%E7%BD%91%E7%BB%9C%E8%A1%A8%E7%A4%BA/" style="font-size: 15px;">网络表示</a> <a href="../../../../tags/%E6%80%BB%E7%BB%93/" style="font-size: 15px;">总结</a> <a href="../../../../tags/Linux/" style="font-size: 15px;">Linux</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="../../../../2020/01/09/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BB%B4%E6%8A%A4%E8%AE%B0%E5%BD%95/">服务器维护记录</a></li><li class="post-list-item"><a class="post-list-link" href="../../../../2019/03/18/%E5%A6%82%E4%BD%95%E5%86%99%E4%B8%80%E7%AF%87%E5%A5%BD%E8%AE%BA%E6%96%87/">如何写一篇好论文</a></li><li class="post-list-item"><a class="post-list-link" href="../../../../2019/03/18/%E7%BD%91%E7%BB%9C%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">网络表示学习总结</a></li><li class="post-list-item"><a class="post-list-link" href="">Ubuntu 18.04 记录</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><script type="text/javascript" src="//maxuewei2.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://www.cnblogs.com/maxuewei2/" title="博客园-maxuewei2" target="_blank">博客园-maxuewei2</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="../../../../." rel="nofollow">maxuewei2 的博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="../../../../js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="../../../../js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML" async></script><script type="text/javascript" src="../../../../js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="../../../../js/smartresize.js?v=0.0.0"></script></body></html>
